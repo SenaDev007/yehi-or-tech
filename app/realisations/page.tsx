@@ -49,7 +49,7 @@ export default function RealisationsPage() {
         </div>
         <div className="mt-10 text-center">
           <Button asChild>
-            <Link href="/contact">Discuter d'un projet similaire</Link>
+            <Link href="/contact">Discuter d&apos;un projet similaire</Link>
           </Button>
         </div>
       </Section>

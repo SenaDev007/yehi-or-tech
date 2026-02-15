@@ -50,7 +50,7 @@ export default function ServicesPage() {
             Nos services
           </h1>
           <p className="mt-4 max-w-2xl text-neutral-gray-light">
-            Des prestations opérationnelles aujourd'hui, pour des organisations plus efficaces.
+            Des prestations opérationnelles aujourd&apos;hui, pour des organisations plus efficaces.
           </p>
         </div>
       </section>

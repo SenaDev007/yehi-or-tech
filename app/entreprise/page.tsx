@@ -85,7 +85,7 @@ export default function EntreprisePage() {
         <div className="section-container py-12 sm:py-16 md:py-20">
           <p className="max-w-2xl text-center text-neutral-gray-light md:text-lg">
             Nous ne nous présentons pas comme une agence web. Nous sommes une{" "}
-            <strong className="text-neutral-white">entreprise d'ingénierie technologique</strong>.
+            <strong className="text-neutral-white">entreprise d&apos;ingénierie technologique</strong>.
           </p>
         </div>
       </section>

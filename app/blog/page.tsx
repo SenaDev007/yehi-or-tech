@@ -28,7 +28,7 @@ export default function BlogPage() {
             Blog & Ressources
           </h1>
           <p className="mt-4 max-w-2xl text-neutral-gray-light">
-            Actualités, bonnes pratiques et retours d'expérience pour accompagner votre transformation numérique.
+            Actualités, bonnes pratiques et retours d&apos;expérience pour accompagner votre transformation numérique.
           </p>
         </div>
       </section>

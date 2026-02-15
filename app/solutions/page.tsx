@@ -41,7 +41,7 @@ export default function SolutionsPage() {
             Solutions
           </h1>
           <p className="mt-4 max-w-2xl text-neutral-gray-light">
-            Des cas concrets pour chaque type d'organisation.
+            Des cas concrets pour chaque type d&apos;organisation.
           </p>
         </div>
       </section>

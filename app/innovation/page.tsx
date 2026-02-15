@@ -47,10 +47,10 @@ export default function InnovationPage() {
             Innovation
           </h1>
           <p className="mt-4 max-w-2xl text-neutral-gray-light">
-            YEHI OR Tech mène également des recherches sur des solutions technologiques avancées visant à améliorer durablement l'accès aux outils numériques.
+            YEHI OR Tech mène également des recherches sur des solutions technologiques avancées visant à améliorer durablement l&apos;accès aux outils numériques.
           </p>
           <p className="mt-3 text-neutral-gray">
-            Ces projets s'inscrivent dans une vision à long terme et feront l'objet de déploiements progressifs. Ils ne sont pas présentés comme des produits disponibles aujourd'hui.
+            Ces projets s&apos;inscrivent dans une vision à long terme et feront l&apos;objet de déploiements progressifs. Ils ne sont pas présentés comme des produits disponibles aujourd&apos;hui.
           </p>
         </div>
       </section>
@@ -80,7 +80,7 @@ export default function InnovationPage() {
           ))}
         </div>
         <p className="mt-8 rounded-lg border border-white/10 bg-primary-dark/50 p-4 text-sm text-neutral-gray">
-          La fabrication d'appareils (ordinateurs YEHI OR, serveurs, terminaux éducatifs) est en préparation et fera l'objet d'annonces lorsque les produits seront prêts.
+          La fabrication d&apos;appareils (ordinateurs YEHI OR, serveurs, terminaux éducatifs) est en préparation et fera l&apos;objet d&apos;annonces lorsque les produits seront prêts.
         </p>
       </Section>
     </>
