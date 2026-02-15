@@ -35,7 +35,7 @@ export function Footer() {
           <div>
             <Link href="/" className="inline-block">
               <Image
-                src="/images/logo-yehi-or-tech.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/logo-yehi-or-tech.png`}
                 alt="YEHI OR Tech"
                 width={120}
                 height={38}
@@ -43,7 +43,7 @@ export function Footer() {
               />
             </Link>
             <p className="mt-3 text-sm text-neutral-gray">
-              Ingénierie technologique & solutions numériques fiables et évolutives.
+              Des idées lumineuses, des solutions encore plus brillantes.
             </p>
             {showContact && (
               <div className="mt-4 flex flex-wrap gap-3">

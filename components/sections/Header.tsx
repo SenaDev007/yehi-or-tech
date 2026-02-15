@@ -44,7 +44,7 @@ export function Header() {
           aria-label="YEHI OR Tech - Accueil"
         >
           <Image
-            src="/images/logo-yehi-or-tech.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/logo-yehi-or-tech.png`}
             alt=""
             width={140}
             height={44}
