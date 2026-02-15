@@ -50,10 +50,8 @@ Dossiers préparés (non implémentés) : `app/(future)/auth`, `app/(future)/das
 
 ## Formulaire de contact
 
-- En **développement** : sans `RESEND_API_KEY`, les envois sont simulés (données loguées en console).
-- En **production** : créer un compte [Resend](https://resend.com), ajouter `RESEND_API_KEY` et `CONTACT_EMAIL` dans `.env.local`. Optionnel : `RESEND_FROM` pour l’adresse d’envoi.
-
-Voir `.env.example`.
+- **GitHub Pages / export statique** : le formulaire envoie vers l’URL définie par `NEXT_PUBLIC_CONTACT_FORM_ACTION`. Créez un formulaire sur [Formspree](https://formspree.io), récupérez l’URL (ex. `https://formspree.io/f/xxxxx`) et ajoutez-la en **secret** dans le dépôt : `Settings → Secrets and variables → Actions → NEXT_PUBLIC_CONTACT_FORM_ACTION`.
+- **En local** : ajoutez la même variable dans `.env.local` pour que le formulaire fonctionne. Voir `.env.example`.
 
 ## Blog
 
@@ -65,5 +63,25 @@ Voir `.env.example`.
 
 ```bash
 npm run build
-npm start
 ```
+
+Le build génère un export statique dans `out/` (pour GitHub Pages).
+
+## Déploiement GitHub Pages
+
+Pour que le **site compilé** s’affiche (et non le README) :
+
+1. **Source de la page**  
+   Sur le dépôt GitHub : **Settings → Pages**.  
+   Dans **Build and deployment**, section **Source** : choisir **« GitHub Actions »** (et non « Deploy from a branch »).  
+   Si « Deploy from a branch » est sélectionné, GitHub sert le contenu du dépôt (dont le README), pas le site Next.js.
+
+2. **Lancer un déploiement**  
+   Chaque push sur `main` déclenche le workflow **Deploy on GitHub Pages**.  
+   Vérifier dans l’onglet **Actions** que le workflow a bien réussi (build + deploy).
+
+3. **Secret pour le formulaire** (optionnel)  
+   **Settings → Secrets and variables → Actions** → ajouter le secret **`NEXT_PUBLIC_CONTACT_FORM_ACTION`** (URL Formspree) pour que le formulaire de contact fonctionne en production.
+
+4. **URL du site**  
+   Après un déploiement réussi : **https://senadev007.github.io/yehi-or-tech/**

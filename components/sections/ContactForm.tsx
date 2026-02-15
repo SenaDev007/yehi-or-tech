@@ -21,28 +21,52 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  const formAction = process.env.NEXT_PUBLIC_CONTACT_FORM_ACTION;
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
     setErrorMessage("");
     const form = e.currentTarget;
-    const body = {
-      name: (form.querySelector('[name="name"]') as HTMLInputElement)?.value,
-      company: (form.querySelector('[name="company"]') as HTMLInputElement)?.value,
-      email: (form.querySelector('[name="email"]') as HTMLInputElement)?.value,
-      phone: (form.querySelector('[name="phone"]') as HTMLInputElement)?.value,
-      service: (form.querySelector('[name="service"]') as HTMLSelectElement)?.value,
-      message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value,
-    };
+
+    if (formAction) {
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(formAction, {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+        const data = await res.json().catch(() => ({}));
+        if (data.ok !== false && res.ok) {
+          setStatus("sent");
+          form.reset();
+          return;
+        }
+        setStatus("error");
+        setErrorMessage(data.error || "Une erreur est survenue.");
+      } catch {
+        setStatus("error");
+        setErrorMessage("Problème de connexion. Réessayez ou contactez-nous par email.");
+      }
+      return;
+    }
 
     try {
+      const body = {
+        name: (form.querySelector('[name="name"]') as HTMLInputElement)?.value,
+        company: (form.querySelector('[name="company"]') as HTMLInputElement)?.value,
+        email: (form.querySelector('[name="email"]') as HTMLInputElement)?.value,
+        phone: (form.querySelector('[name="phone"]') as HTMLInputElement)?.value,
+        service: (form.querySelector('[name="service"]') as HTMLSelectElement)?.value,
+        message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value,
+      };
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
       const data = await res.json().catch(() => ({}));
-
       if (!res.ok) {
         setStatus("error");
         setErrorMessage(data.error || "Une erreur est survenue.");
