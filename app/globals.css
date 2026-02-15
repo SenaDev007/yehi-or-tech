@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* YEHI OR Tech - palette stricte */
+  --bg-primary: #0a1628;
+  --bg-dark: #061020;
+  --bg-light: #0f2847;
+  --accent-electric: #3b82f6;
+  --accent-blue: #2563eb;
+  --cta-yellow: #eab308;
+  --cta-hover: #f59e0b;
+  --text-white: #fafafa;
+  --text-gray: #94a3b8;
+  --text-muted: #64748b;
+  --border-subtle: rgba(148, 163, 184, 0.15);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-primary text-neutral-white antialiased overflow-x-hidden;
+    background-color: var(--bg-primary);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Éviter le débordement horizontal sur tout le site */
+html {
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .section-container {
+    @apply container mx-auto max-w-6xl px-4 sm:px-5 md:px-6;
+  }
+  /* Texte qui ne déborde pas sur mobile */
+  .break-words-safe {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
