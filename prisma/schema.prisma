@@ -1,0 +1,345 @@
+// prisma/schema.prisma — YEHI OR Tech CDC v1.4
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── AUTH ──────────────────────────────────────────────
+model User {
+  id           Int         @id @default(autoincrement())
+  email        String      @unique
+  password     String
+  name         String
+  role         Role        @default(EDITEUR)
+  lastLogin    DateTime?
+  loginHistory LoginLog[]
+  createdAt    DateTime    @default(now())
+}
+
+model LoginLog {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  ip        String
+  userAgent String
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  EDITEUR
+  LECTEUR
+}
+
+// ── SERVICES ──────────────────────────────────────────
+model Service {
+  id         Int        @id @default(autoincrement())
+  slug       String     @unique
+  nom        String
+  categorie  ServiceCat
+  icone      String
+  descCourte String
+  descLongue String
+  processus  String[]
+  livrables  String[]
+  nonInclus  String[]
+  delai      String
+  badge      String?
+  actif      Boolean    @default(true)
+  ordre      Int        @default(0)
+  tarifs     Tarif[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Tarif {
+  id        Int     @id @default(autoincrement())
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  serviceId Int
+  niveau    String  // "Essentiel" | "Standard" | "Premium"
+  formule   String
+  prixMin   Int
+  prixMax   Int
+  note      String?
+  ordre     Int     @default(0)
+}
+
+enum ServiceCat {
+  BRANDING
+  WEB
+  IMPRESSION
+  PACK
+  CREDIBILITE
+  FORMATION
+  HEBERGEMENT
+}
+
+// ── PORTFOLIO ─────────────────────────────────────────
+model Projet {
+  id              Int       @id @default(autoincrement())
+  slug            String    @unique
+  titre           String
+  client          String
+  secteur         String
+  categorie       ProjetCat
+  problematique   String
+  solution        String
+  resultats       String
+  images          String[]
+  imagePrincipale String?
+  urlExterne      String?
+  miseEnAvant     Boolean   @default(false)
+  publie          Boolean   @default(false)
+  temoignage      String?
+  noteClient      Int?
+  ordre           Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+enum ProjetCat {
+  BRANDING
+  SITE_WEB
+  APP_WEB
+  IMPRESSION
+  IDENTITE_VISUELLE
+}
+
+// ── BLOG ──────────────────────────────────────────────
+model Article {
+  id          Int         @id @default(autoincrement())
+  slug        String      @unique
+  titre       String
+  extrait     String
+  contenu     String
+  couverture  String?
+  auteur      String
+  categorie   BlogCat
+  tags        String[]
+  metaTitle   String?
+  metaDesc    String?
+  ogImage     String?
+  statut      ArticleStat @default(BROUILLON)
+  vues        Int         @default(0)
+  publishedAt DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+enum BlogCat {
+  BRANDING
+  WEB
+  DIGITAL_AFRIQUE
+  ACTUALITES
+  GUIDES
+}
+
+enum ArticleStat {
+  BROUILLON
+  PLANIFIE
+  PUBLIE
+}
+
+// ── ÉQUIPE ────────────────────────────────────────────
+model MembreEquipe {
+  id        Int      @id @default(autoincrement())
+  prenom    String
+  nom       String
+  role      String
+  bio       String?
+  photo     String?
+  linkedin  String?
+  actif     Boolean  @default(true)
+  ordre     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+// ── TÉMOIGNAGES ───────────────────────────────────────
+model Temoignage {
+  id         Int      @id @default(autoincrement())
+  prenom     String
+  nom        String
+  entreprise String
+  poste      String
+  photo      String?
+  texte      String
+  note       Int
+  service    String?
+  verifie    Boolean  @default(false)
+  visible    Boolean  @default(true)
+  ordre      Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+// ── LEADS ─────────────────────────────────────────────
+model DemandeDevis {
+  id          Int       @id @default(autoincrement())
+  nom         String
+  prenom      String
+  email       String
+  telephone   String
+  entreprise  String?
+  ville       String?
+  pays        String?
+  services    String[]
+  niveau      String?
+  description String
+  budget      String?
+  delai       String?
+  simulation  String?
+  statut      DevisStat @default(NOUVEAU)
+  assigneA    String?
+  noteInterne String?
+  source      String?   // "site" | "elior_web" | "elior_whatsapp" | "elior_facebook"
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum DevisStat {
+  NOUVEAU
+  EN_COURS
+  DEVIS_ENVOYE
+  GAGNE
+  PERDU
+}
+
+model MessageContact {
+  id        Int         @id @default(autoincrement())
+  nom       String
+  prenom    String
+  email     String
+  telephone String?
+  sujet     String
+  message   String
+  statut    MessageStat @default(NON_LU)
+  createdAt DateTime    @default(now())
+}
+
+enum MessageStat {
+  NON_LU
+  LU
+  TRAITE
+  ARCHIVE
+}
+
+model Candidature {
+  id        Int        @id @default(autoincrement())
+  nom       String
+  prenom    String
+  email     String
+  telephone String
+  poste     String
+  type      String
+  cv        String?
+  lm        String?
+  diplomes  String?
+  message   String?
+  statut    CandidStat @default(RECUE)
+  createdAt DateTime   @default(now())
+}
+
+enum CandidStat {
+  RECUE
+  EN_EXAMEN
+  CONVOQUEE
+  RETENUE
+  REFUSEE
+}
+
+// ── CARRIÈRE ──────────────────────────────────────────
+model Offre {
+  id              Int      @id @default(autoincrement())
+  titre           String
+  type            String
+  modalite        String
+  description     String
+  responsabilites String[]
+  prerequis       String[]
+  avantages       String[]
+  statut          String   @default("OUVERTE")
+  expiresAt       DateTime?
+  permanente      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+}
+
+// ── ELIOR IA ──────────────────────────────────────────
+model Conversation {
+  id        Int       @id @default(autoincrement())
+  canal     Canal     @default(WEB)
+  sessionId String    @unique
+  statut    ConvStat  @default(OUVERTE)
+  leadQual  Boolean   @default(false)
+  messages  Message[]
+  leads     Lead[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id             Int          @id @default(autoincrement())
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId Int
+  role           String       // "user" | "assistant"
+  content        String
+  createdAt      DateTime     @default(now())
+}
+
+model Lead {
+  id             Int          @id @default(autoincrement())
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId Int
+  nom            String?
+  email          String?
+  telephone      String?
+  entreprise     String?
+  secteur        String?
+  besoin         String?
+  budget         String?
+  statut         LeadStat     @default(NOUVEAU)
+  noteInterne    String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+enum Canal {
+  WEB
+  WHATSAPP
+  FACEBOOK
+  INSTAGRAM
+}
+
+enum ConvStat {
+  OUVERTE
+  QUALIFIEE
+  ESCALADEE
+  FERMEE
+}
+
+enum LeadStat {
+  NOUVEAU
+  EN_COURS
+  DEVIS_ENVOYE
+  GAGNE
+  PERDU
+}
+
+// ── NEWSLETTER ────────────────────────────────────────
+model Abonne {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  actif     Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// ── PARAMÈTRES ────────────────────────────────────────
+model Parametre {
+  id     Int    @id @default(autoincrement())
+  cle    String @unique
+  valeur String
+}

@@ -1,39 +1,23 @@
-import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import type { Metadata } from "next";
+import { Syne, Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/sections/Header";
-import { Footer } from "@/components/sections/Footer";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-syne",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "YEHI OR Tech | Ingénierie technologique & solutions numériques",
+  title: "YEHI OR Tech — Des idées lumineuses, des solutions encore plus brillantes",
   description:
-    "YEHI OR Tech accompagne les entreprises et institutions dans la conception, le développement et la gestion de solutions technologiques fiables et évolutives.",
-  keywords: [
-    "technologie",
-    "développement",
-    "cloud",
-    "informatique",
-    "Afrique",
-    "solutions numériques",
-  ],
-  openGraph: {
-    title: "YEHI OR Tech | Ingénierie technologique",
-    description:
-      "Des idées lumineuses, des solutions encore plus brillantes. Solutions technologiques fiables et évolutives.",
-    type: "website",
-  },
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 5,
+    "Agence de branding, création web & impression — Parakou, Bénin",
 };
 
 export default function RootLayout({
@@ -42,11 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={plusJakarta.variable}>
-      <body className="min-h-screen flex flex-col font-sans bg-primary overflow-x-hidden">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html lang="fr" className={`${syne.variable} ${inter.variable}`}>
+      <body className="min-h-screen bg-white font-inter antialiased">
+        {children}
       </body>
     </html>
   );

@@ -1,62 +1,62 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+/**
+ * Boutons CTA — Design System YEHI OR Tech.
+ * Principal (gold) · Secondaire (bordure blue) · Ghost · Link.
+ * CDC v1.4
+ */
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-electric focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default:
-          "bg-cta text-primary-dark hover:bg-cta-hover shadow-lg hover:shadow-cta/25",
-        secondary:
-          "bg-primary-light text-neutral-white border border-white/20 hover:border-accent-electric hover:bg-white/5",
-        outline:
-          "border border-accent-electric/50 text-neutral-white hover:bg-accent-electric/10",
-        ghost: "text-neutral-white hover:bg-white/5",
-        link: "text-cta underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-11 px-6 py-2",
-        sm: "h-9 px-4 text-xs",
-        lg: "h-12 px-8 text-base",
-        xl: "h-14 px-10 text-lg",
-        icon: "h-10 w-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
+import * as React from "react";
+
+const variants = {
+  primary:
+    "bg-gold text-black rounded-lg px-6 py-3 font-semibold shadow-[0_2px_8px_rgba(245,168,0,0.3)] hover:bg-[#FFB800] hover:-translate-y-0.5 transition-all",
+  secondary:
+    "border-2 border-blue text-blue rounded-lg px-6 py-3 font-semibold hover:bg-blue hover:text-white transition-all",
+  ghost:
+    "text-navy hover:bg-blue-xl rounded-lg px-6 py-3 font-medium transition-all",
+  link: "text-blue font-medium underline-offset-4 hover:underline",
+  outline:
+    "border-2 border-white text-white rounded-lg px-6 py-3 font-semibold hover:bg-white hover:text-navy transition-all",
+} as const;
+
+type ButtonVariant = keyof typeof variants;
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
   asChild?: boolean;
+  children: React.ReactNode;
+  className?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, children, ...props }, ref) => {
-    const computedClassName = cn(buttonVariants({ variant, size, className }));
+  (
+    {
+      variant = "primary",
+      asChild = false,
+      className = "",
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const classes = `inline-flex items-center justify-center ${variants[variant]} ${className}`.trim();
+
     if (asChild && React.isValidElement(children)) {
-      const child = children as React.ReactElement<{ className?: string }>;
-      return React.cloneElement(child, {
-        className: cn(computedClassName, child.props?.className),
+      return React.cloneElement(children as React.ReactElement<{ className?: string }>, {
+        className: [classes, (children.props as { className?: string }).className]
+          .filter(Boolean)
+          .join(" "),
       });
     }
+
     return (
-      <button
-        className={computedClassName}
-        ref={ref}
-        {...props}
-      >
+      <button ref={ref} className={classes} type="button" {...props}>
         {children}
       </button>
     );
   }
 );
+
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button };

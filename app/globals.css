@@ -2,57 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Palette YEHI OR Tech — Design System v1.4 */
 :root {
-  /* YEHI OR Tech - palette stricte */
-  --bg-primary: #0a1628;
-  --bg-dark: #061020;
-  --bg-light: #0f2847;
-  --accent-electric: #3b82f6;
-  --accent-blue: #2563eb;
-  --cta-yellow: #eab308;
-  --cta-hover: #f59e0b;
-  --text-white: #fafafa;
-  --text-gray: #94a3b8;
-  --text-muted: #64748b;
-  --border-subtle: rgba(148, 163, 184, 0.15);
+  --navy: #0d2e8c;
+  --blue: #1a4fd0;
+  --gold: #f5a800;
+  --orange: #e67e22;
+  --black: #111111;
+  --white: #ffffff;
+  --gray: #555555;
+  --lgray: #888888;
+  --gold-lt: #fff8e1;
+  --blue-xl: #eef3ff;
+  --blue-lt: #d6e4ff;
+  --success: #1b5e20;
+  --success-lt: #e8f5e9;
+  --error: #b71c1c;
+  --error-lt: #ffebee;
+  --dark-bg: #080f2a;
 }
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    @apply scroll-smooth;
   }
   body {
-    @apply bg-primary text-neutral-white antialiased overflow-x-hidden;
-    background-color: var(--bg-primary);
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply font-inter text-base text-black antialiased;
   }
 }
 
-/* Éviter le débordement horizontal sur tout le site */
-html {
-  overflow-x: hidden;
+/* Pulsation bouton WhatsApp — toutes les 4s */
+@keyframes whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 20px rgba(245, 168, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 32px rgba(245, 168, 0, 0.6);
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.whatsapp-pulse {
+  animation: whatsapp-pulse 4s ease-in-out infinite;
+}
+
+/* Hero — particules dorées (GPU-composited, max 50) */
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
   }
-  .section-container {
-    @apply container mx-auto max-w-6xl px-4 sm:px-5 md:px-6;
+  25% {
+    transform: translate(10px, -20px) scale(1.1);
+    opacity: 0.7;
   }
-  /* Texte qui ne déborde pas sur mobile */
-  .break-words-safe {
-    overflow-wrap: break-word;
-    word-break: break-word;
+  50% {
+    transform: translate(-5px, -40px) scale(0.9);
+    opacity: 0.5;
   }
-  .hero-glow {
-    box-shadow: 0 0 60px rgba(234, 179, 8, 0.12), 0 0 120px rgba(59, 130, 246, 0.06);
+  75% {
+    transform: translate(15px, -25px) scale(1.05);
+    opacity: 0.6;
   }
-  @keyframes glow-pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 0.9; }
-  }
-  .animate-glow-pulse {
-    animation: glow-pulse 4s ease-in-out infinite;
-  }
+}
+
+.hero-particle {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Widget Elior — pulsation 4s */
+@keyframes elior-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(245, 168, 0, 0.4); }
+  50% { box-shadow: 0 4px 32px rgba(245, 168, 0, 0.6); }
+}
+
+.elior-pulse-animation {
+  animation: elior-pulse 4s ease-in-out infinite;
 }

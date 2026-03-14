@@ -1,184 +1,96 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
 
-const services: { value: string; label: string }[] = [
-  { value: "", label: "Sélectionnez un service" },
-  { value: "it", label: "Informatique & IT" },
-  { value: "developpement", label: "Développement" },
-  { value: "cloud", label: "Cloud & Hébergement" },
-  { value: "design", label: "Design & Impression" },
-  { value: "ia", label: "Intelligence Artificielle" },
-  { value: "autre", label: "Autre" },
-];
+export default function ContactForm() {
+  const searchParams = useSearchParams();
+  const sujetParam = searchParams.get("sujet") ?? "";
 
-export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [sujet, setSujet] = useState(sujetParam || "Demande d'information");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const formAction = process.env.NEXT_PUBLIC_CONTACT_FORM_ACTION;
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
-    setErrorMessage("");
-    const form = e.currentTarget;
-
-    if (formAction) {
-      try {
-        const formData = new FormData(form);
-        const res = await fetch(formAction, {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
-        });
-        const data = await res.json().catch(() => ({}));
-        if (data.ok !== false && res.ok) {
-          setStatus("sent");
-          form.reset();
-          return;
-        }
-        setStatus("error");
-        setErrorMessage(data.error || "Une erreur est survenue.");
-      } catch {
-        setStatus("error");
-        setErrorMessage("Problème de connexion. Réessayez ou contactez-nous par email.");
-      }
-      return;
-    }
-
+    setStatus("loading");
+    setErrorMsg("");
     try {
-      const body = {
-        name: (form.querySelector('[name="name"]') as HTMLInputElement)?.value,
-        company: (form.querySelector('[name="company"]') as HTMLInputElement)?.value,
-        email: (form.querySelector('[name="email"]') as HTMLInputElement)?.value,
-        phone: (form.querySelector('[name="phone"]') as HTMLInputElement)?.value,
-        service: (form.querySelector('[name="service"]') as HTMLSelectElement)?.value,
-        message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value,
-      };
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify({
+          nom,
+          prenom,
+          email,
+          telephone: telephone || undefined,
+          sujet,
+          message,
+        }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
+      if (res.ok) {
+        setStatus("success");
+        setNom("");
+        setPrenom("");
+        setEmail("");
+        setTelephone("");
+        setSujet(sujetParam || "Demande d'information");
+        setMessage("");
+      } else {
         setStatus("error");
-        setErrorMessage(data.error || "Une erreur est survenue.");
-        return;
+        setErrorMsg(data.error ?? "Une erreur est survenue.");
       }
-      setStatus("sent");
-      form.reset();
     } catch {
       setStatus("error");
-      setErrorMessage("Problème de connexion. Réessayez ou contactez-nous par email.");
+      setErrorMsg("Erreur de connexion.");
     }
+  };
+
+  if (status === "success") {
+    return (
+      <div className="rounded-xl border border-success/30 bg-success-lt p-6 text-center">
+        <p className="font-syne font-semibold text-success">Message envoyé</p>
+        <p className="mt-2 text-gray">
+          Nous vous recontacterons dans les plus brefs délais.
+        </p>
+      </div>
+    );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="min-w-0 space-y-6">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="name">Nom *</Label>
-          <Input
-            id="name"
-            name="name"
-            required
-            placeholder="Votre nom"
-            className="mt-1.5"
-          />
-        </div>
-        <div>
-          <Label htmlFor="company">Entreprise</Label>
-          <Input
-            id="company"
-            name="company"
-            placeholder="Nom de l'entreprise"
-            className="mt-1.5"
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Input label="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required />
+        <Input label="Prénom" value={prenom} onChange={(e) => setPrenom(e.target.value)} required />
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="email">Email *</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="votre@email.com"
-            className="mt-1.5"
-          />
-        </div>
-        <div>
-          <Label htmlFor="phone">Téléphone</Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="+225 00 00 00 00 00"
-            className="mt-1.5"
-          />
-        </div>
-      </div>
+      <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <Input label="Téléphone" type="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
+      <Input label="Sujet" value={sujet} onChange={(e) => setSujet(e.target.value)} required />
       <div>
-        <Label htmlFor="service">Service souhaité</Label>
-        <select
-          id="service"
-          name="service"
-          className="mt-1.5 flex h-11 w-full rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-neutral-white focus:outline-none focus:ring-2 focus:ring-accent-electric/50 focus:border-accent-electric transition-colors appearance-none cursor-pointer"
-        >
-          {services.map((s) => (
-            <option key={s.value} value={s.value}>
-              {s.label}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <Label htmlFor="message">Message *</Label>
-        <Textarea
-          id="message"
-          name="message"
+        <label className="mb-1.5 block font-syne text-sm font-medium uppercase tracking-wide text-black">
+          Message
+        </label>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           required
-          placeholder="Décrivez votre projet ou votre demande..."
+          minLength={10}
           rows={5}
-          className="mt-1.5"
+          className="w-full rounded-lg border border-blue-lt bg-white px-4 py-3 font-inter text-black placeholder:text-lgray focus:border-blue focus:outline-none focus:ring-2 focus:ring-blue/20"
+          placeholder="Votre message..."
         />
       </div>
-      {status === "sent" && (
-        <div className="flex items-center gap-3 rounded-xl border border-accent-electric/30 bg-accent-electric/10 p-4 text-accent-electric">
-          <CheckCircle2 className="h-5 w-5 shrink-0" />
-          <p className="text-sm font-medium">
-            Message envoyé. Nous vous recontacterons rapidement.
-          </p>
-        </div>
-      )}
-      {status === "error" && (
-        <div className="flex items-center gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-red-400">
-          <AlertCircle className="h-5 w-5 shrink-0" />
-          <p className="text-sm">{errorMessage}</p>
-        </div>
-      )}
-      <Button
-        type="submit"
-        size="lg"
-        className="w-full sm:w-auto"
-        disabled={status === "sending"}
-      >
-        {status === "sending" ? (
-          "Envoi en cours..."
-        ) : (
-          <>
-            <Send className="mr-2 h-4 w-4" />
-            Envoyer
-          </>
-        )}
+      {errorMsg && <p className="text-sm text-error">{errorMsg}</p>}
+      <Button type="submit" variant="primary" className="shadow-gold-cta" disabled={status === "loading"}>
+        {status === "loading" ? "Envoi…" : "Envoyer"}
       </Button>
     </form>
   );
