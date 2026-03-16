@@ -66,14 +66,14 @@ export default function AdminCandidatureDetailPage() {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <Link
         href="/admin/candidatures"
         className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white"
       >
         <ArrowLeft className="h-4 w-4" /> Retour
       </Link>
-      <h1 className="mt-4 font-syne text-2xl font-semibold text-white">
+      <h1 className="mt-4 font-syne text-xl font-semibold text-white sm:text-2xl">
         Candidature #{item.id} — {item.poste}
       </h1>
 

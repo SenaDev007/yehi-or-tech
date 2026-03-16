@@ -24,7 +24,7 @@ export default function ServiceFilters() {
   const current = searchParams.get("categorie") || "TOUS";
 
   return (
-    <div className="sticky top-[70px] z-30 border-b border-blue-lt bg-white/95 py-4 backdrop-blur">
+    <div className="sticky top-[70px] z-30 border-b border-blue-lt bg-white/95 py-3 sm:py-4 backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 px-4">
         {CATEGORIES.map(({ value, label }) => {
           const href = value === "TOUS" ? "/services" : `/services?categorie=${value}`;
@@ -33,7 +33,7 @@ export default function ServiceFilters() {
             <Link
               key={value}
               href={href}
-              className={`rounded-lg px-4 py-2 font-syne text-sm font-medium transition ${
+              className={`rounded-lg px-3 sm:px-4 py-2.5 min-h-[44px] inline-flex items-center justify-center font-syne text-xs sm:text-sm font-medium transition ${
                 isActive
                   ? "bg-gold text-black shadow-gold-cta"
                   : "bg-blue-xl/50 text-navy hover:bg-blue-lt"

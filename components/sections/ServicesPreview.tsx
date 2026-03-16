@@ -46,13 +46,13 @@ export default function ServicesPreview() {
   return (
     <section
       id="services"
-      className="scroll-mt-20 bg-blue-xl/20 px-4 py-16 md:py-24"
+      className="scroll-mt-20 bg-blue-xl/20 px-4 py-12 sm:py-16 md:py-24"
       aria-labelledby="services-preview-title"
     >
       <div className="mx-auto max-w-6xl">
         <motion.h2
           id="services-preview-title"
-          className="font-syne text-2xl font-semibold text-navy md:text-4xl"
+          className="font-syne text-xl font-semibold text-navy sm:text-2xl md:text-4xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -70,7 +70,7 @@ export default function ServicesPreview() {
           Du branding à l&apos;impression en passant par le web : des solutions claires et des tarifs transparents.
         </motion.p>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((service, i) => {
             const Icon = service.icone;
             return (
@@ -82,20 +82,20 @@ export default function ServicesPreview() {
                 transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.08 }}
               >
                 <Card hover className="flex h-full flex-col">
-                  <CardContent className="flex-1 pt-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gold/20 text-gold">
-                      <Icon className="h-6 w-6" />
+                  <CardContent className="flex-1 pt-4 sm:pt-6">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg bg-gold/20 text-gold">
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                     </div>
-                    <h3 className="mt-4 font-syne text-lg font-semibold text-navy">
+                    <h3 className="mt-3 sm:mt-4 font-syne text-base sm:text-lg font-semibold text-navy">
                       {service.nom}
                     </h3>
-                    <p className="mt-2 text-sm text-gray">{service.desc}</p>
+                    <p className="mt-2 text-xs sm:text-sm text-gray">{service.desc}</p>
                     <p className="mt-4 font-syne text-sm font-semibold text-gold">
                       À partir de {service.prixDepart} FCFA
                     </p>
                   </CardContent>
                   <CardFooter className="pt-2">
-                    <Button asChild variant="secondary" className="w-full">
+                    <Button asChild variant="secondary" className="w-full min-h-[44px]">
                       <Link href={`/services/${service.slug}`}>
                         En savoir plus
                       </Link>
@@ -114,7 +114,7 @@ export default function ServicesPreview() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Button asChild variant="primary" className="shadow-gold-cta">
+          <Button asChild variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto">
             <Link href="/services">Voir tous les services</Link>
           </Button>
         </motion.div>

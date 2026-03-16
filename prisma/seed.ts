@@ -153,46 +153,52 @@ async function main() {
     });
   }
 
-  // 3 projets phares
+  // 3 projets phares — images depuis /public/images
   const projetsData = [
     {
       slug: "foncier-facile-afrique",
       titre: "Foncier Facile Afrique",
-      client: "FFA",
-      secteur: "Immobilier",
+      client: "Foncier Facile Afrique",
+      secteur: "Immobilier & Conseil foncier",
       categorie: "SITE_WEB" as const,
-      problematique: "Vitrine et génération de leads.",
-      solution: "Site vitrine avec formulaire de contact et SEO local.",
-      resultats: "Augmentation des demandes de renseignements.",
-      images: [],
+      problematique: "Absence de présence web professionnelle pour un cabinet de conseil en investissement foncier opérant entre le Bénin et la France.",
+      solution: "Refonte complète du site web en Next.js 15 avec design dark premium (Anthracite & Or), interface publique + backoffice administrateur.",
+      resultats: "Site professionnel livré avec design premium cohérent, interface admin autonome, optimisé mobile et SEO.",
+      imagePrincipale: "/images/portfolio-mockup-ffa.jpg",
+      images: ["/images/portfolio-mockup-ffa.jpg"],
+      urlExterne: "https://foncierfacileafrique.fr",
       miseEnAvant: true,
       publie: true,
       ordre: 1,
     },
     {
       slug: "serma-hub",
-      titre: "SERMA HUB",
-      client: "CFPEA / SERMA",
-      secteur: "Institutionnel",
+      titre: "SERMA HUB — Impact Academy",
+      client: "CFPEA — Centre de Formation Professionnelle Entrepreneuriale",
+      secteur: "Formation professionnelle",
       categorie: "SITE_WEB" as const,
-      problematique: "Présence web professionnelle.",
-      solution: "Site institutionnel multi-pages avec actualités.",
-      resultats: "Visibilité renforcée pour l'organisation.",
-      images: [],
+      problematique: "Le CFPEA de Parakou avait besoin d'un site institutionnel complet pour présenter ses 5 filières et permettre les inscriptions en ligne avec paiement mobile.",
+      solution: "Site institutionnel complet avec 5 pages filières, intégration FedaPay pour paiement mobile money, design navy & orange lumineux, backoffice admin.",
+      resultats: "Site livré avec paiement intégré, design cohérent avec la charte SERMA HUB, optimisé pour les étudiants béninois sur mobile.",
+      imagePrincipale: "/images/portfolio-mockup-serma.jpg",
+      images: ["/images/portfolio-mockup-serma.jpg"],
+      urlExterne: "https://sermahub.com",
       miseEnAvant: true,
       publie: true,
       ordre: 2,
     },
     {
       slug: "academia-helm",
-      titre: "Academia Helm",
-      client: "Academia Helm",
-      secteur: "Éducation",
+      titre: "Academia Helm — Plateforme SaaS",
+      client: "YEHI OR Tech (produit interne)",
+      secteur: "EdTech / SaaS",
       categorie: "APP_WEB" as const,
-      problematique: "Gestion scolaire et suivi des élèves.",
-      solution: "Application web SaaS pour établissements.",
-      resultats: "Centralisation des données et gain de temps.",
-      images: [],
+      problematique: "Les établissements scolaires béninois manquent d'outils de gestion numérique accessibles et adaptés à leur réalité.",
+      solution: "Plateforme SaaS multi-tenant de gestion scolaire. Chaque école dispose de son sous-domaine propre. Gestion élèves, notes, emplois du temps, paiements.",
+      resultats: "Plateforme en beta avec une institution test au Bénin. Architecture multi-tenant fonctionnelle sur Cloudflare + Vercel.",
+      imagePrincipale: "/images/portfolio-mockup-academia.jpg",
+      images: ["/images/portfolio-mockup-academia.jpg"],
+      urlExterne: "https://academiahelm.com",
       miseEnAvant: true,
       publie: true,
       ordre: 3,
@@ -202,12 +208,37 @@ async function main() {
   for (const p of projetsData) {
     await prisma.projet.upsert({
       where: { slug: p.slug },
-      update: {},
-      create: { ...p, images: [] },
+      update: {
+        imagePrincipale: p.imagePrincipale,
+        images: p.images,
+        titre: p.titre,
+        client: p.client,
+        secteur: p.secteur,
+        problematique: p.problematique,
+        solution: p.solution,
+        resultats: p.resultats,
+        urlExterne: p.urlExterne ?? null,
+      },
+      create: p,
     });
   }
 
-  console.log("Seed terminé : 1 admin, 16 services, 3 projets.");
+  // Articles blog initiaux — couvertures depuis /public/images
+  const articlesData = [
+    { slug: "pourquoi-branding-crucial-pme-beninoise-2025", titre: "Pourquoi le branding est crucial pour les PME béninoises en 2025", extrait: "Dans un marché de plus en plus concurrentiel, une identité visuelle forte n'est plus un luxe.", contenu: "<h2>Le branding, un investissement</h2><p>...</p>", couverture: "/images/blog-cover-branding-benin.jpg", auteur: "YEHI OR Tech", categorie: "BRANDING" as const, tags: ["branding", "PME", "Bénin"], statut: "PUBLIE" as const, publishedAt: new Date() },
+    { slug: "site-web-ou-page-facebook-entrepreneur-beninois", titre: "Site web ou page Facebook : ce que tout entrepreneur béninois doit savoir", extrait: "Facebook est un outil de communication. Un site web est votre maison digitale.", contenu: "<h2>Votre page Facebook peut disparaître</h2><p>...</p>", couverture: "/images/blog-cover-site-vs-facebook.jpg", auteur: "YEHI OR Tech", categorie: "WEB" as const, tags: ["site web", "Facebook", "entrepreneur"], statut: "PUBLIE" as const, publishedAt: new Date() },
+    { slug: "spf-dkim-dmarc-emails-professionnels-benin", titre: "SPF, DKIM, DMARC : pourquoi vos emails arrivent en spam — et comment y remédier", extrait: "Si vos emails professionnels finissent en spam, ce n'est pas un hasard.", contenu: "<h2>Pourquoi votre email atterrit en spam</h2><p>...</p>", couverture: "/images/blog-cover-dns-antispam.jpg", auteur: "YEHI OR Tech", categorie: "GUIDES" as const, tags: ["DNS", "email", "SPF", "DKIM"], statut: "PUBLIE" as const, publishedAt: new Date() },
+  ];
+
+  for (const a of articlesData) {
+    await prisma.article.upsert({
+      where: { slug: a.slug },
+      update: { couverture: a.couverture },
+      create: a,
+    });
+  }
+
+  console.log("Seed terminé : 1 admin, 16 services, 3 projets, 3 articles.");
 }
 
 main()

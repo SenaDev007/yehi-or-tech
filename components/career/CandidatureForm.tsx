@@ -69,7 +69,7 @@ export default function CandidatureForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-success/30 bg-success-lt p-8 text-center">
+      <div className="rounded-xl border border-success/30 bg-success-lt p-4 sm:p-8 text-center">
         <p className="font-syne text-lg font-semibold text-success">Candidature envoyée</p>
         <p className="mt-2 text-gray">
           Nous avons bien reçu votre candidature et nous vous recontacterons rapidement.
@@ -114,7 +114,7 @@ export default function CandidatureForm() {
       </div>
       {status === "error" && <p className="text-sm text-red-600">{errorMsg}</p>}
       <div className="flex flex-wrap gap-4">
-        <Button type="submit" variant="primary" className="shadow-gold-cta" disabled={status === "loading"}>
+        <Button type="submit" variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto" disabled={status === "loading"}>
           {status === "loading" ? "Envoi…" : "Envoyer ma candidature"}
         </Button>
         <Button asChild variant="ghost">

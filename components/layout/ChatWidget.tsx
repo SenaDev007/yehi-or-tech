@@ -1,13 +1,15 @@
 "use client";
 
 /**
- * Widget chat Elior — bulle dorée, panneau slide-in, streaming, proactivité sur /services.
- * CDC v1.4
+ * Widget chat Elior — avatar, panneau avec fond, streaming, proactivité sur /services.
+ * CDC v1.4 — next/image pour avatar et fond.
  */
 
+import Image from "next/image";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
-import { MessageCircle, Send, X } from "lucide-react";
+import { Send, X } from "lucide-react";
+import { IMAGES } from "@/lib/images";
 
 const SESSION_KEY = "elior_session_id";
 const PROACTIVE_DELAY_MS = 45 * 1000;
@@ -88,7 +90,19 @@ export default function ChatWidget() {
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        throw new Error(err.error ?? "Erreur");
+        const msg = err?.error ?? "Erreur";
+        if (res.status === 503) {
+          setMessages((prev) => [
+            ...prev,
+            {
+              role: "assistant",
+              content: "L'assistante Elior n'est pas configurée pour le moment (ANTHROPIC_API_KEY manquant). Contactez l'administrateur ou utilisez le formulaire de contact / WhatsApp.",
+            },
+          ]);
+          setLoading(false);
+          return;
+        }
+        throw new Error(msg);
       }
 
       const reader = res.body?.getReader();
@@ -129,7 +143,7 @@ export default function ChatWidget() {
         ...prev,
         {
           role: "assistant",
-          content: "Je ne peux pas répondre pour le moment. Contactez-nous au +229 01 41 36 08 03 ou via le formulaire.",
+          content: "Je ne peux pas répondre pour le moment. Contactez-nous au +229 41 36 08 03 (WhatsApp) ou via le formulaire.",
         },
       ]);
     } finally {
@@ -142,21 +156,34 @@ export default function ChatWidget() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className={`fixed bottom-5 right-20 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gold text-navy shadow-[0_4px_20px_rgba(245,168,0,0.4)] transition hover:scale-110 hover:shadow-[0_6px_24px_rgba(245,168,0,0.5)] ${open ? "" : PULSE_CLASS}`}
+        className={`fixed bottom-5 right-20 z-40 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-gold text-navy shadow-[0_4px_20px_rgba(245,168,0,0.4)] transition hover:scale-110 hover:shadow-[0_6px_24px_rgba(245,168,0,0.5)] ${open ? "" : PULSE_CLASS}`}
         aria-label={open ? "Fermer le chat" : "Ouvrir le chat Elior"}
       >
-        <MessageCircle className="h-7 w-7" strokeWidth={2} />
+        <Image
+          src={IMAGES.elior.avatar}
+          alt="Elior — Assistante YEHI OR Tech"
+          width={56}
+          height={56}
+          className="rounded-full object-cover"
+        />
       </button>
 
       {open && (
-        <div className="fixed bottom-24 right-4 z-40 flex h-[calc(100vh-7rem)] w-full max-w-[400px] flex-col overflow-hidden rounded-2xl border border-gold/30 bg-white shadow-xl">
-          <div className="flex items-center gap-3 border-b border-blue-lt bg-navy p-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/20 text-gold">
-              <MessageCircle className="h-5 w-5" />
-            </div>
-            <div className="flex-1">
+        <div
+          className="fixed bottom-24 right-4 z-40 flex h-[calc(100vh-7rem)] w-full max-w-[400px] flex-col overflow-hidden rounded-2xl border border-gold/30 shadow-xl bg-cover bg-center"
+          style={{ backgroundImage: `url(${IMAGES.elior.chatBg})` }}
+        >
+          <div className="flex items-center gap-3 border-b border-gold/30 bg-navy p-4">
+            <Image
+              src={IMAGES.elior.avatar}
+              alt="Elior"
+              width={40}
+              height={40}
+              className="rounded-full object-cover border-2 border-gold shrink-0"
+            />
+            <div className="flex-1 min-w-0">
               <p className="font-syne font-semibold text-white">Elior</p>
-              <p className="text-xs text-white/70">Assistante · En ligne</p>
+              <p className="text-xs text-gold">Assistante YEHI OR Tech · En ligne</p>
             </div>
             <button
               type="button"

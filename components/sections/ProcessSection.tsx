@@ -44,13 +44,13 @@ const STEPS = [
 export default function ProcessSection() {
   return (
     <section
-      className="bg-white px-4 py-16 md:py-24"
+      className="bg-white px-4 py-12 sm:py-16 md:py-24"
       aria-labelledby="process-title"
     >
       <div className="mx-auto max-w-6xl">
         <motion.h2
           id="process-title"
-          className="font-syne text-2xl font-semibold text-navy md:text-4xl"
+          className="font-syne text-xl font-semibold text-navy sm:text-2xl md:text-4xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -59,7 +59,7 @@ export default function ProcessSection() {
           Comment on travaille ensemble
         </motion.h2>
         <motion.p
-          className="mt-3 max-w-2xl text-gray"
+          className="mt-2 sm:mt-3 max-w-2xl text-sm sm:text-base text-gray"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -68,7 +68,7 @@ export default function ProcessSection() {
           Un process en 5 étapes pour des livraisons sereines et un résultat à la hauteur de vos attentes.
         </motion.p>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 sm:mt-12 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
           {STEPS.map((step, i) => {
             const Icon = step.icon;
             return (
@@ -86,16 +86,16 @@ export default function ProcessSection() {
                     aria-hidden
                   />
                 )}
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-gold bg-gold/10 text-gold">
-                  <Icon className="h-6 w-6" />
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border-2 border-gold bg-gold/10 text-gold">
+                  <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <span className="mt-3 font-syne text-sm font-semibold text-gold">
+                <span className="mt-2 sm:mt-3 font-syne text-xs sm:text-sm font-semibold text-gold">
                   Étape {step.num}
                 </span>
-                <h3 className="mt-1 font-syne text-lg font-semibold text-navy">
+                <h3 className="mt-1 font-syne text-base sm:text-lg font-semibold text-navy">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm text-gray">{step.text}</p>
+                <p className="mt-2 text-xs sm:text-sm text-gray">{step.text}</p>
               </motion.div>
             );
           })}

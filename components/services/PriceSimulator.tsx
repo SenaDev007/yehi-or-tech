@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/Button";
 import { formatFCFA } from "@/lib/utils";
 
 const DEVIS_URL =
-  process.env.NEXT_PUBLIC_DEVIS_URL || "https://devis.yehiortech.com";
+  process.env.NEXT_PUBLIC_DEVIS_URL || "/devis";
 
 export interface SimulatorService {
   slug: string;
@@ -59,15 +59,15 @@ export default function PriceSimulator({
 
   return (
     <motion.div
-      className={`rounded-2xl border border-blue-lt bg-white p-6 shadow-sm ${className}`.trim()}
+      className={`rounded-xl sm:rounded-2xl border border-blue-lt bg-white p-4 sm:p-6 shadow-sm ${className}`.trim()}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
-      <h3 className="font-syne text-xl font-semibold text-navy">
+      <h3 className="font-syne text-lg sm:text-xl font-semibold text-navy">
         Simulateur de devis
       </h3>
-      <p className="mt-1 text-sm text-gray">
+      <p className="mt-1 text-xs sm:text-sm text-gray">
         Obtenez une fourchette indicative en quelques clics.
       </p>
 

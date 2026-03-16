@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Lightbox from "./Lightbox";
 
 export interface PortfolioGalleryProps {
@@ -26,12 +27,14 @@ export default function PortfolioGallery({ images }: PortfolioGalleryProps) {
             key={i}
             type="button"
             onClick={() => open(i)}
-            className="relative aspect-video overflow-hidden rounded-xl bg-blue-xl/30 transition hover:ring-2 hover:ring-gold"
+            className="relative aspect-video overflow-hidden rounded-lg sm:rounded-xl bg-blue-xl/30 transition hover:ring-2 hover:ring-gold min-h-[120px] sm:min-h-0"
           >
-            <img
+            <Image
               src={src}
-              alt=""
-              className="h-full w-full object-cover"
+              alt={`Aperçu projet ${i + 1}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           </button>
         ))}

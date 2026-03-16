@@ -56,9 +56,9 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-success/30 bg-success-lt p-6 text-center">
-        <p className="font-syne font-semibold text-success">Message envoyé</p>
-        <p className="mt-2 text-gray">
+      <div className="rounded-xl border border-success/30 bg-success-lt p-4 sm:p-6 text-center">
+        <p className="font-syne text-sm sm:text-base font-semibold text-success">Message envoyé</p>
+        <p className="mt-2 text-sm sm:text-base text-gray">
           Nous vous recontacterons dans les plus brefs délais.
         </p>
       </div>
@@ -89,7 +89,7 @@ export default function ContactForm() {
         />
       </div>
       {errorMsg && <p className="text-sm text-error">{errorMsg}</p>}
-      <Button type="submit" variant="primary" className="shadow-gold-cta" disabled={status === "loading"}>
+      <Button type="submit" variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto" disabled={status === "loading"}>
         {status === "loading" ? "Envoi…" : "Envoyer"}
       </Button>
     </form>

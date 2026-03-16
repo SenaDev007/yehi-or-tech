@@ -5,7 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Loader2, ArrowLeft } from "lucide-react";
+import AdminFormLayout from "@/components/admin/AdminFormLayout";
+import { Loader2 } from "lucide-react";
 
 type Parametre = {
   id: number;
@@ -59,7 +60,7 @@ export default function AdminParametreEditPage() {
 
   if (!item) {
     return (
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <Link href="/admin/parametres" className="text-gold hover:underline">← Retour</Link>
         <p className="mt-4 text-white/80">Paramètre introuvable.</p>
       </div>
@@ -67,33 +68,24 @@ export default function AdminParametreEditPage() {
   }
 
   return (
-    <div className="p-6">
-      <Link
-        href="/admin/parametres"
-        className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white"
-      >
-        <ArrowLeft className="h-4 w-4" /> Retour
-      </Link>
-      <h1 className="mt-4 font-syne text-2xl font-semibold text-white">
-        Paramètre : {item.cle}
-      </h1>
-
-      <div className="mt-8 max-w-xl rounded-xl border border-white/10 bg-white/5 p-6">
-        <Input
-          label="Valeur"
-          value={valeur}
-          onChange={(e) => setValeur(e.target.value)}
-          className="border-white/20 bg-white/5 text-white"
-        />
-        <div className="mt-6 flex gap-4">
-          <Button variant="primary" onClick={save} disabled={saving}>
-            {saving ? "Enregistrement…" : "Enregistrer"}
-          </Button>
-          <Button asChild variant="ghost" className="text-white/80 hover:bg-white/10 hover:text-white">
-            <Link href="/admin/parametres">Annuler</Link>
-          </Button>
-        </div>
+    <AdminFormLayout
+      backHref="/admin/parametres"
+      title={`Paramètre : ${item.cle}`}
+    >
+      <Input
+        label="Valeur"
+        value={valeur}
+        onChange={(e) => setValeur(e.target.value)}
+        className="border-white/30"
+      />
+      <div className="flex gap-4">
+        <Button variant="primary" onClick={save} disabled={saving}>
+          {saving ? "Enregistrement…" : "Enregistrer"}
+        </Button>
+        <Button asChild variant="ghost" className="text-white hover:bg-white/10">
+          <Link href="/admin/parametres">Annuler</Link>
+        </Button>
       </div>
-    </div>
+    </AdminFormLayout>
   );
 }

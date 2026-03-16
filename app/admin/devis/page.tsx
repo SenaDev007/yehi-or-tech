@@ -31,8 +31,8 @@ export default function AdminDevisPage() {
   }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="font-syne text-2xl font-semibold text-white flex items-center gap-2">
+    <div className="p-4 sm:p-6">
+      <h1 className="font-syne text-xl font-semibold text-white flex items-center gap-2 sm:text-2xl">
         <FileCheck className="h-7 w-7 text-gold" />
         Demandes devis
       </h1>
@@ -42,7 +42,7 @@ export default function AdminDevisPage() {
           <Loader2 className="h-8 w-8 animate-spin text-gold" />
         </div>
       ) : (
-        <div className="mt-8">
+        <div className="mt-6 sm:mt-8">
           <AdminTable<Devis>
             columns={[
               { key: "prenom", label: "Prénom" },

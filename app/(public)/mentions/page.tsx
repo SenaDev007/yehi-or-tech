@@ -9,18 +9,18 @@ export const metadata: Metadata = {
 export default function MentionsPage() {
   return (
     <div className="min-h-screen bg-white pt-[70px]">
-      <section className="bg-navy px-4 py-12 md:py-16">
+      <section className="bg-navy px-4 py-8 sm:py-12 md:py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-syne text-3xl font-bold text-white md:text-4xl">
+          <h1 className="font-syne text-xl font-bold text-white sm:text-2xl md:text-4xl">
             Mentions légales & Politique de confidentialité
           </h1>
         </div>
       </section>
 
-      <div className="mx-auto max-w-4xl px-4 py-12">
-        <div className="max-w-none space-y-12 text-gray">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12">
+        <div className="max-w-none space-y-8 sm:space-y-12 text-sm sm:text-base text-gray">
           <section id="mentions">
-            <h2 className="font-syne text-xl font-semibold text-navy">Mentions légales</h2>
+            <h2 className="font-syne text-lg sm:text-xl font-semibold text-navy">Mentions légales</h2>
             <p className="mt-2">
               <strong>Éditeur du site :</strong> YEHI OR Tech — Bèyarou, Parakou, Bénin.
             </p>
@@ -31,7 +31,7 @@ export default function MentionsPage() {
               <strong>Co-fondateur :</strong> AKPOVI Tchognon Stevens.
             </p>
             <p className="mt-2">
-              <strong>Contact :</strong> +229 01 41 36 08 03 — contact@yehiortech.com
+              <strong>Contact :</strong> +229 41 36 08 03 (WhatsApp Business) — contact@yehiortech.com
             </p>
             <p className="mt-4">
               Le site www.yehiortech.com est la propriété de YEHI OR Tech. Toute reproduction ou utilisation non autorisée des contenus peut constituer une contrefaçon.
@@ -39,7 +39,7 @@ export default function MentionsPage() {
           </section>
 
           <section id="confidentialite">
-            <h2 className="font-syne text-xl font-semibold text-navy">
+            <h2 className="font-syne text-lg sm:text-xl font-semibold text-navy">
               Politique de confidentialité
             </h2>
             <p className="mt-2">
@@ -69,7 +69,7 @@ export default function MentionsPage() {
           </section>
 
           <section>
-            <h2 className="font-syne text-xl font-semibold text-navy">
+            <h2 className="font-syne text-lg sm:text-xl font-semibold text-navy">
               Crédits
             </h2>
             <p className="mt-2">

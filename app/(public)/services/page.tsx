@@ -1,6 +1,6 @@
 /**
  * Page liste des services — filtres sticky, grille, simulateur, exit-intent.
- * CDC v1.4
+ * CDC v1.4 — hero avec image.
  */
 
 import { Suspense } from "react";
@@ -12,11 +12,16 @@ import ServiceCard from "@/components/services/ServiceCard";
 import PriceSimulator from "@/components/services/PriceSimulator";
 import ExitIntentPopup from "@/components/services/ExitIntentPopup";
 import ServicesPageClient from "./ServicesPageClient";
+import { HeroImage } from "@/components/ui/HeroImage";
+import { IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Nos services | YEHI OR Tech",
   description:
     "Branding, sites web, e-commerce, impression, packs et crédibilité digitale — tarifs transparents et devis sur mesure. Parakou, Bénin.",
+  openGraph: {
+    images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
+  },
 };
 
 type SearchParams = Promise<{ categorie?: string }>;
@@ -44,17 +49,21 @@ export default async function ServicesPage({
 
   return (
     <div className="min-h-screen bg-white pt-[70px]">
-      {/* Hero */}
-      <section className="bg-navy px-4 py-16 md:py-20">
-        <div className="mx-auto max-w-6xl text-center">
-          <h1 className="font-syne text-3xl font-bold text-white md:text-5xl">
+      <HeroImage
+        src={IMAGES.services.heroBg}
+        height="h-56 sm:h-64 md:h-80"
+        overlayOpacity={75}
+        priority
+      >
+        <div className="mx-auto max-w-6xl w-full px-4 text-center">
+          <h1 className="font-syne text-2xl font-bold text-white sm:text-3xl md:text-5xl">
             Nos services
           </h1>
-          <p className="mt-4 text-lg text-white/85">
+          <p className="mt-3 sm:mt-4 text-base text-white/85 sm:text-lg">
             Du branding à l&apos;impression en passant par le web : des solutions claires et des tarifs transparents.
           </p>
         </div>
-      </section>
+      </HeroImage>
 
       <Suspense fallback={<div className="h-14" />}>
         <ServiceFilters />
@@ -74,7 +83,7 @@ export default async function ServicesPage({
         )}
 
         {services.length > 0 && (
-          <div className="mt-16">
+          <div className="mt-10 sm:mt-16">
             <PriceSimulator services={simulatorServices} />
           </div>
         )}

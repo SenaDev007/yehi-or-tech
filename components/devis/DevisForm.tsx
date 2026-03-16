@@ -2,15 +2,17 @@
 
 /**
  * Formulaire devis multi-étapes — 3 étapes, barre de progression, confirmation animée.
- * CDC v1.4
+ * CDC v1.4 — illustration succès.
  */
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
+import { IMAGES } from "@/lib/images";
 
 const STEPS = 3;
 
@@ -96,18 +98,17 @@ export default function DevisForm({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="rounded-2xl border border-success/30 bg-success-lt p-8 text-center"
+        className="rounded-xl sm:rounded-2xl border border-success/30 bg-success-lt p-4 sm:p-8 text-center"
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-          className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-success text-white"
-        >
-          <CheckCircle className="h-10 w-10" />
-        </motion.div>
-        <h2 className="mt-6 font-syne text-xl font-semibold text-navy">
-          Demande envoyée
+        <Image
+          src={IMAGES.devis.successIllustration}
+          alt="Demande de devis envoyée avec succès"
+          width={300}
+          height={240}
+          className="mx-auto mb-6"
+        />
+        <h2 className="font-syne text-2xl font-bold text-gold">
+          Votre demande a été transmise !
         </h2>
         <p className="mt-2 text-gray">
           Merci {prenom}. Nous vous enverrons votre devis personnalisé sous 24h à l&apos;adresse {email}.
@@ -117,7 +118,7 @@ export default function DevisForm({
   }
 
   return (
-    <div className="rounded-2xl border border-blue-lt bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-xl sm:rounded-2xl border border-blue-lt bg-white p-4 sm:p-6 shadow-sm md:p-8">
       <ProgressBar step={step} total={STEPS} />
 
       <AnimatePresence mode="wait">

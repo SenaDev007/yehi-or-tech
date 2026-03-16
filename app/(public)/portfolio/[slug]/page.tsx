@@ -34,47 +34,47 @@ export default async function PortfolioSlugPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-white pt-[70px]">
-      <section className="bg-navy px-4 py-12 md:py-16">
+      <section className="bg-navy px-4 py-8 sm:py-12 md:py-16">
         <div className="mx-auto max-w-4xl">
-          <nav className="mb-6 text-sm text-white/70" aria-label="Fil d'Ariane">
+          <nav className="mb-4 sm:mb-6 text-xs sm:text-sm text-white/70" aria-label="Fil d'Ariane">
             <Link href="/portfolio" className="hover:text-white">Réalisations</Link>
             <span className="mx-2">/</span>
-            <span className="text-white">{projet.titre}</span>
+            <span className="text-white line-clamp-1">{projet.titre}</span>
           </nav>
-          <h1 className="font-syne text-3xl font-bold text-white md:text-4xl">
+          <h1 className="font-syne text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             {projet.titre}
           </h1>
-          <p className="mt-2 text-white/85">{projet.client} · {projet.secteur}</p>
-          <span className="mt-3 inline-block rounded bg-gold/20 px-3 py-1 font-syne text-sm font-medium text-gold">
+          <p className="mt-2 text-sm sm:text-base text-white/85">{projet.client} · {projet.secteur}</p>
+          <span className="mt-3 inline-block rounded bg-gold/20 px-3 py-1 font-syne text-xs sm:text-sm font-medium text-gold">
             {PROJET_CAT_LABELS[projet.categorie]}
           </span>
         </div>
       </section>
 
-      <div className="mx-auto max-w-4xl px-4 py-12">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12">
         {images.length > 0 && (
-          <section className="mb-12">
+          <section className="mb-8 sm:mb-12">
             <PortfolioGallery images={images} />
           </section>
         )}
 
         <section>
-          <h2 className="font-syne text-xl font-semibold text-navy">Problématique</h2>
-          <p className="mt-2 text-gray">{projet.problematique}</p>
+          <h2 className="font-syne text-lg sm:text-xl font-semibold text-navy">Problématique</h2>
+          <p className="mt-2 text-sm sm:text-base text-gray">{projet.problematique}</p>
         </section>
 
-        <section className="mt-8">
-          <h2 className="font-syne text-xl font-semibold text-navy">Solution</h2>
-          <p className="mt-2 text-gray">{projet.solution}</p>
+        <section className="mt-6 sm:mt-8">
+          <h2 className="font-syne text-lg sm:text-xl font-semibold text-navy">Solution</h2>
+          <p className="mt-2 text-sm sm:text-base text-gray">{projet.solution}</p>
         </section>
 
-        <section className="mt-8">
-          <h2 className="font-syne text-xl font-semibold text-navy">Résultats</h2>
-          <p className="mt-2 text-gray">{projet.resultats}</p>
+        <section className="mt-6 sm:mt-8">
+          <h2 className="font-syne text-lg sm:text-xl font-semibold text-navy">Résultats</h2>
+          <p className="mt-2 text-sm sm:text-base text-gray">{projet.resultats}</p>
         </section>
 
         {projet.temoignage && (
-          <section className="mt-12 rounded-xl border border-blue-lt bg-blue-xl/20 p-6">
+          <section className="mt-8 sm:mt-12 rounded-xl border border-blue-lt bg-blue-xl/20 p-4 sm:p-6">
             <blockquote className="text-gray">"{projet.temoignage}"</blockquote>
             <p className="mt-3 font-syne font-semibold text-navy">{projet.client}</p>
             {projet.noteClient != null && (
@@ -84,8 +84,8 @@ export default async function PortfolioSlugPage({ params }: Props) {
         )}
 
         {projet.urlExterne && (
-          <div className="mt-8">
-            <Button asChild variant="primary" className="shadow-gold-cta">
+          <div className="mt-6 sm:mt-8">
+            <Button asChild variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto">
               <a href={projet.urlExterne} target="_blank" rel="noopener noreferrer">
                 Voir le projet en ligne
               </a>
@@ -93,11 +93,11 @@ export default async function PortfolioSlugPage({ params }: Props) {
           </div>
         )}
 
-        <div className="mt-12 flex gap-4">
-          <Button asChild variant="secondary">
+        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <Button asChild variant="secondary" className="min-h-[44px] w-full sm:w-auto">
             <Link href="/portfolio">Tous les projets</Link>
           </Button>
-          <Button asChild variant="primary" className="shadow-gold-cta">
+          <Button asChild variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto">
             <Link href="/contact">Nous contacter</Link>
           </Button>
         </div>

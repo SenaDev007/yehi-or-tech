@@ -5,7 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Loader2, ArrowLeft } from "lucide-react";
+import AdminFormLayout from "@/components/admin/AdminFormLayout";
+import { Loader2 } from "lucide-react";
 
 type User = {
   id: number;
@@ -93,49 +94,33 @@ export default function AdminUtilisateurEditPage() {
     );
   }
   if (!isNew && !item) {
-    return (
-      <div className="p-6">
-        <Link href="/admin/utilisateurs" className="text-gold hover:underline">← Retour</Link>
-        <p className="mt-4 text-white/80">Utilisateur introuvable.</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="p-6">
-      <Link
-        href="/admin/utilisateurs"
-        className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white"
-      >
-        <ArrowLeft className="h-4 w-4" /> Retour
-      </Link>
-      <h1 className="mt-4 font-syne text-2xl font-semibold text-white">
-        {isNew ? "Nouvel utilisateur" : "Modifier l’utilisateur"}
-      </h1>
-
-      <div className="mt-8 max-w-xl space-y-6 rounded-xl border border-white/10 bg-white/5 p-6">
-        <Input
+      return (
+    <AdminFormLayout
+      backHref="/admin/utilisateurs"
+      title={isNew ? "Nouvel utilisateur" : "Modifier l'utilisateur"}
+    >
+      <Input
           label="Nom"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border-white/20 bg-white/5 text-white"
+          className="border-white/30"
         />
         <Input
           label="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border-white/20 bg-white/5 text-white"
+          className="border-white/30"
         />
         <div>
-          <label className="mb-1.5 block font-syne text-sm font-medium text-white/90">Rôle</label>
+          <label className="mb-1.5 block font-syne text-sm font-medium text-white">Rôle</label>
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white"
+            className="w-full rounded-lg border border-white/30 px-4 py-3"
           >
             {ROLES.map((r) => (
-              <option key={r} value={r} className="bg-navy">{r}</option>
+              <option key={r} value={r} >{r}</option>
             ))}
           </select>
         </div>
@@ -144,7 +129,7 @@ export default function AdminUtilisateurEditPage() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border-white/20 bg-white/5 text-white"
+          className="border-white/30"
           placeholder="Min. 8 caractères"
           required={isNew}
         />
@@ -152,11 +137,10 @@ export default function AdminUtilisateurEditPage() {
           <Button variant="primary" onClick={save} disabled={saving}>
             {saving ? "Enregistrement…" : "Enregistrer"}
           </Button>
-          <Button asChild variant="ghost" className="text-white/80 hover:bg-white/10 hover:text-white">
+          <Button asChild variant="ghost" className="text-white hover:bg-white/10">
             <Link href="/admin/utilisateurs">Annuler</Link>
           </Button>
         </div>
-      </div>
-    </div>
+    </AdminFormLayout>
   );
 }

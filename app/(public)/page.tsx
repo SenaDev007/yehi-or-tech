@@ -1,6 +1,6 @@
 /**
  * Page d'accueil — 7 sections + conversion.
- * CDC v1.4
+ * CDC v1.4 — Témoignages connectés au backoffice (admin/temoignages).
  */
 
 import HeroSection from "@/components/sections/HeroSection";
@@ -14,8 +14,10 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import GuaranteeBlock from "@/components/sections/GuaranteeBlock";
 import CTAFinal from "@/components/sections/CTAFinal";
 import ConversionToast from "@/components/sections/ConversionToast";
+import { getTemoignages } from "@/lib/temoignages";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const temoignages = await getTemoignages();
   return (
     <>
       <HeroSection />
@@ -25,7 +27,7 @@ export default function HomePage() {
       <ProcessSection />
       <PortfolioPreview />
       <ClientLogos />
-      <TestimonialsSection />
+      <TestimonialsSection temoignages={temoignages} />
       <GuaranteeBlock />
       <CTAFinal />
       <ConversionToast />

@@ -5,7 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Loader2, ArrowLeft } from "lucide-react";
+import AdminFormLayout from "@/components/admin/AdminFormLayout";
+import { Loader2 } from "lucide-react";
 import { BLOG_CAT_LABELS } from "@/lib/blog";
 import type { BlogCat } from "@prisma/client";
 
@@ -93,44 +94,39 @@ export default function AdminBlogEditPage() {
   }
 
   return (
-    <div className="p-6">
-      <Link href="/admin/blog" className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white">
-        <ArrowLeft className="h-4 w-4" /> Retour
-      </Link>
-      <h1 className="mt-4 font-syne text-2xl font-semibold text-white">
-        {isNew ? "Nouvel article" : "Modifier l’article"}
-      </h1>
-      <div className="mt-8 max-w-2xl space-y-6 rounded-xl border border-white/10 bg-white/5 p-6">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Input label="Slug" value={form.slug ?? ""} onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value }))} className="border-white/20 bg-white/5 text-white" />
-          <Input label="Titre" value={form.titre ?? ""} onChange={(e) => setForm((f) => ({ ...f, titre: e.target.value }))} className="border-white/20 bg-white/5 text-white" />
-        </div>
-        <Input label="Auteur" value={form.auteur ?? ""} onChange={(e) => setForm((f) => ({ ...f, auteur: e.target.value }))} className="border-white/20 bg-white/5 text-white" />
-        <div>
-          <label className="mb-1.5 block font-syne text-sm font-medium text-white/90">Catégorie</label>
-          <select value={form.categorie ?? "ACTUALITES"} onChange={(e) => setForm((f) => ({ ...f, categorie: e.target.value as BlogCat }))} className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white">
-            {CATEGORIES.map((c) => <option key={c} value={c} className="bg-navy">{BLOG_CAT_LABELS[c]}</option>)}
-          </select>
-        </div>
-        <div>
-          <label className="mb-1.5 block font-syne text-sm font-medium text-white/90">Extrait</label>
-          <textarea value={form.extrait ?? ""} onChange={(e) => setForm((f) => ({ ...f, extrait: e.target.value }))} rows={2} className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white" />
-        </div>
-        <div>
-          <label className="mb-1.5 block font-syne text-sm font-medium text-white/90">Contenu</label>
-          <textarea value={form.contenu ?? ""} onChange={(e) => setForm((f) => ({ ...f, contenu: e.target.value }))} rows={8} className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white" />
-        </div>
-        <div>
-          <label className="mb-1.5 block font-syne text-sm font-medium text-white/90">Statut</label>
-          <select value={form.statut ?? "BROUILLON"} onChange={(e) => setForm((f) => ({ ...f, statut: e.target.value }))} className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white">
-            {STATUTS.map((s) => <option key={s} value={s} className="bg-navy">{s}</option>)}
-          </select>
-        </div>
-        <div className="flex gap-4">
-          <Button variant="primary" className="shadow-gold-cta" onClick={save} disabled={saving}>{saving ? "Enregistrement…" : "Enregistrer"}</Button>
-          <Button asChild variant="ghost" className="text-white/80 hover:bg-white/10 hover:text-white"><Link href="/admin/blog">Annuler</Link></Button>
-        </div>
+    <AdminFormLayout
+      backHref="/admin/blog"
+      title={isNew ? "Nouvel article" : "Modifier l\u2019article"}
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Input label="Slug" value={form.slug ?? ""} onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value }))} className="border-white/30" />
+        <Input label="Titre" value={form.titre ?? ""} onChange={(e) => setForm((f) => ({ ...f, titre: e.target.value }))} className="border-white/30" />
       </div>
-    </div>
+      <Input label="Auteur" value={form.auteur ?? ""} onChange={(e) => setForm((f) => ({ ...f, auteur: e.target.value }))} className="border-white/30" />
+      <div>
+        <label className="mb-1.5 block font-syne text-sm font-medium text-white">Catégorie</label>
+        <select value={form.categorie ?? "ACTUALITES"} onChange={(e) => setForm((f) => ({ ...f, categorie: e.target.value as BlogCat }))} className="w-full rounded-lg border border-white/30 px-4 py-3">
+          {CATEGORIES.map((c) => <option key={c} value={c}>{BLOG_CAT_LABELS[c]}</option>)}
+        </select>
+      </div>
+      <div>
+        <label className="mb-1.5 block font-syne text-sm font-medium text-white">Extrait</label>
+        <textarea value={form.extrait ?? ""} onChange={(e) => setForm((f) => ({ ...f, extrait: e.target.value }))} rows={2} className="w-full rounded-lg border border-white/30 px-4 py-3" />
+      </div>
+      <div>
+        <label className="mb-1.5 block font-syne text-sm font-medium text-white">Contenu</label>
+        <textarea value={form.contenu ?? ""} onChange={(e) => setForm((f) => ({ ...f, contenu: e.target.value }))} rows={8} className="w-full rounded-lg border border-white/30 px-4 py-3" />
+      </div>
+      <div>
+        <label className="mb-1.5 block font-syne text-sm font-medium text-white">Statut</label>
+        <select value={form.statut ?? "BROUILLON"} onChange={(e) => setForm((f) => ({ ...f, statut: e.target.value }))} className="w-full rounded-lg border border-white/30 px-4 py-3">
+          {STATUTS.map((s) => <option key={s} value={s}>{s}</option>)}
+        </select>
+      </div>
+      <div className="flex gap-4">
+        <Button variant="primary" className="shadow-gold-cta" onClick={save} disabled={saving}>{saving ? "Enregistrement…" : "Enregistrer"}</Button>
+        <Button asChild variant="ghost" className="text-white hover:bg-white/10"><Link href="/admin/blog">Annuler</Link></Button>
+      </div>
+    </AdminFormLayout>
   );
 }

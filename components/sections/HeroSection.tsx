@@ -1,17 +1,19 @@
 "use client";
 
 /**
- * Hero — fond navy, particules dorées CSS, H1, sous-titre, 2 CTAs, scroll indicator.
- * CDC v1.4 — particules GPU-composited, max 50.
+ * Hero — image de fond, particules dorées CSS, H1, sous-titre, 2 CTAs, scroll indicator.
+ * CDC v1.4 — next/image, particules GPU-composited.
  */
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { IMAGES } from "@/lib/images";
 
 const DEVIS_URL =
-  process.env.NEXT_PUBLIC_DEVIS_URL || "https://devis.yehiortech.com";
+  process.env.NEXT_PUBLIC_DEVIS_URL || "/devis";
 
 const PARTICLE_COUNT = 40;
 
@@ -40,15 +42,29 @@ function HeroParticles() {
 export default function HeroSection() {
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center bg-navy px-4 pt-[70px] pb-16"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-[70px] pb-12 sm:pb-16"
       aria-labelledby="hero-title"
     >
+      <Image
+        src={IMAGES.accueil.heroBg}
+        alt=""
+        fill
+        priority
+        quality={90}
+        className="object-cover object-center -z-20"
+        sizes="100vw"
+      />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ backgroundColor: "rgba(13, 46, 140, 0.82)" }}
+        aria-hidden
+      />
       <HeroParticles />
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <motion.h1
           id="hero-title"
-          className="font-syne text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+          className="font-syne text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -56,7 +72,7 @@ export default function HeroSection() {
           Des idées lumineuses, des solutions encore plus brillantes.
         </motion.h1>
         <motion.p
-          className="mt-6 text-lg text-white/85 md:text-xl"
+          className="mt-4 sm:mt-6 text-base text-white sm:text-lg md:text-xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
@@ -64,15 +80,15 @@ export default function HeroSection() {
           Agence de branding, création web & impression — Parakou, Bénin
         </motion.p>
         <motion.div
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
         >
-          <Button asChild variant="primary" className="shadow-gold-cta">
+          <Button asChild variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto">
             <Link href="#services">Découvrir nos services</Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="min-h-[44px] w-full sm:w-auto">
             <a
               href={DEVIS_URL}
               target={DEVIS_URL.startsWith("http") ? "_blank" : undefined}

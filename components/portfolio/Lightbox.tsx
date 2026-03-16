@@ -2,10 +2,11 @@
 
 /**
  * Lightbox galerie — overlay plein écran, navigation, fermeture ESC.
- * CDC v1.4
+ * CDC v1.4 — next/image.
  */
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface LightboxProps {
@@ -68,11 +69,15 @@ export default function Lightbox({
       )}
 
       {src && (
-        <img
-          src={src}
-          alt=""
-          className="max-h-[90vh] max-w-[90vw] object-contain"
-        />
+        <div className="relative h-[90vh] w-[90vw] max-w-4xl">
+          <Image
+            src={src}
+            alt=""
+            fill
+            className="object-contain"
+            sizes="90vw"
+          />
+        </div>
       )}
 
       {hasNext && (

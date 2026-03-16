@@ -33,15 +33,15 @@ export default function NewsletterInline() {
   };
 
   return (
-    <div className="rounded-xl border border-blue-lt bg-blue-xl/20 p-6">
-      <h3 className="font-syne text-lg font-semibold text-navy">
+    <div className="rounded-xl border border-blue-lt bg-blue-xl/20 p-4 sm:p-6">
+      <h3 className="font-syne text-base sm:text-lg font-semibold text-navy">
         Newsletter
       </h3>
-      <p className="mt-2 text-sm text-gray">
+      <p className="mt-2 text-xs sm:text-sm text-gray">
         Recevez nos derniers articles et actualités par email.
       </p>
       {status === "success" ? (
-        <p className="mt-4 text-sm text-success">Merci pour votre inscription.</p>
+        <p className="mt-4 text-xs sm:text-sm text-success">Merci pour votre inscription.</p>
       ) : (
         <form onSubmit={handleSubmit} className="mt-4 space-y-3">
           <Input
@@ -55,7 +55,7 @@ export default function NewsletterInline() {
           <Button
             type="submit"
             variant="primary"
-            className="w-full shadow-gold-cta"
+            className="w-full min-h-[44px] shadow-gold-cta"
             disabled={status === "loading"}
           >
             {status === "loading" ? "Inscription…" : "S'abonner"}

@@ -11,6 +11,11 @@ import { verifyToken } from "@/lib/auth-jwt";
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Ne jamais toucher aux assets Next.js et aux fichiers statiques
+  if (pathname.startsWith("/_next") || pathname.startsWith("/favicon") || pathname.includes(".")) {
+    return NextResponse.next();
+  }
+
   // Laisser passer tout ce qui n'est pas sous /admin
   if (!pathname.startsWith("/admin")) {
     return NextResponse.next();

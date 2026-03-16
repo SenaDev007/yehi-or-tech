@@ -18,7 +18,7 @@ import * as LucideIcons from "lucide-react";
 import { formatFCFA } from "@/lib/utils";
 
 const DEVIS_URL =
-  process.env.NEXT_PUBLIC_DEVIS_URL || "https://devis.yehiortech.com";
+  process.env.NEXT_PUBLIC_DEVIS_URL || "/devis";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -64,29 +64,29 @@ export default async function ServiceSlugPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-white pt-[70px]">
       {/* Hero */}
-      <section className="bg-navy px-4 py-12 md:py-16">
+      <section className="bg-navy px-4 py-8 sm:py-12 md:py-16">
         <div className="mx-auto max-w-4xl">
-          <nav className="mb-6 text-sm text-white/70" aria-label="Fil d'Ariane">
+          <nav className="mb-4 sm:mb-6 text-xs sm:text-sm text-white/70" aria-label="Fil d'Ariane">
             <Link href="/services" className="hover:text-white">
               Services
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-white">{service.nom}</span>
+            <span className="text-white line-clamp-1">{service.nom}</span>
           </nav>
-          <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gold/20 text-gold">
-              <Icon className="h-7 w-7" />
+          <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+            <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl bg-gold/20 text-gold">
+              <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
             </div>
-            <div>
+            <div className="min-w-0">
               <Badge variant="gold" className="mb-2">
                 {catLabel}
               </Badge>
-              <h1 className="font-syne text-3xl font-bold text-white md:text-4xl">
+              <h1 className="font-syne text-2xl font-bold text-white sm:text-3xl md:text-4xl">
                 {service.nom}
               </h1>
-              <p className="mt-2 text-white/85">{service.descCourte}</p>
+              <p className="mt-2 text-sm sm:text-base text-white/85">{service.descCourte}</p>
               {service.delai && (
-                <p className="mt-2 text-sm text-white/70">
+                <p className="mt-2 text-xs sm:text-sm text-white/70">
                   Délai indicatif : {service.delai}
                 </p>
               )}
@@ -95,11 +95,11 @@ export default async function ServiceSlugPage({ params }: Props) {
         </div>
       </section>
 
-      <div className="mx-auto max-w-4xl px-4 py-12">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12">
         {/* Description */}
         <section>
           <div
-            className="max-w-none text-gray"
+            className="max-w-none text-sm sm:text-base text-gray"
             dangerouslySetInnerHTML={{
               __html: service.descLongue.replace(/\n/g, "<br />"),
             }}
@@ -129,7 +129,7 @@ export default async function ServiceSlugPage({ params }: Props) {
         )}
 
         {/* Livrables / Non inclus */}
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
+        <div className="mt-8 sm:mt-12 grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2">
           {service.livrables.length > 0 && (
             <div>
               <h3 className="font-syne font-semibold text-navy">Livrables</h3>
@@ -153,28 +153,28 @@ export default async function ServiceSlugPage({ params }: Props) {
         </div>
 
         {/* Tarifs */}
-        <section className="mt-16">
+        <section className="mt-10 sm:mt-16">
           <ServiceTarifs tarifs={service.tarifs} />
         </section>
 
         {/* Simulateur */}
-        <section className="mt-16">
+        <section className="mt-10 sm:mt-16">
           <PriceSimulator services={simulatorServices} />
         </section>
 
         {/* FAQ */}
-        <section className="mt-16">
+        <section className="mt-10 sm:mt-16">
           <ServiceFAQ />
         </section>
 
         {/* Garantie */}
-        <section className="mt-16">
+        <section className="mt-10 sm:mt-16">
           <GuaranteeBlock />
         </section>
 
         {/* CTA */}
-        <section className="mt-12 flex flex-wrap gap-4">
-          <Button asChild variant="primary" className="shadow-gold-cta">
+        <section className="mt-8 sm:mt-12 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+          <Button asChild variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto">
             <a
               href={DEVIS_URL}
               target={DEVIS_URL.startsWith("http") ? "_blank" : undefined}
@@ -183,7 +183,7 @@ export default async function ServiceSlugPage({ params }: Props) {
               Demander un devis pour ce service
             </a>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="min-h-[44px] w-full sm:w-auto">
             <Link href="/services">Voir tous les services</Link>
           </Button>
         </section>

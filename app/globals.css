@@ -29,6 +29,24 @@
   body {
     @apply font-inter text-base text-black antialiased;
   }
+  /* Backoffice : texte clair par défaut pour lisibilité sur fond sombre */
+  [data-admin-content] {
+    @apply text-white;
+  }
+  /* Formulaires admin : placeholders en noir (fond clair) */
+  [data-admin-form] input::placeholder,
+  [data-admin-form] textarea::placeholder {
+    color: #000000 !important;
+  }
+  [data-admin-form] input::-moz-placeholder,
+  [data-admin-form] textarea::-moz-placeholder {
+    color: #000000 !important;
+  }
+  [data-admin-form] select,
+  [data-admin-form] select option {
+    color: #111827 !important;
+    background-color: #ffffff !important;
+  }
 }
 
 /* Pulsation bouton WhatsApp — toutes les 4s */
@@ -80,4 +98,19 @@
 
 .elior-pulse-animation {
   animation: elior-pulse 4s ease-in-out infinite;
+}
+
+/* Logos clients — marquee défilement horizontal */
+@keyframes client-logos-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.client-logos-marquee {
+  animation: client-logos-scroll 20s linear infinite;
+  will-change: transform;
 }

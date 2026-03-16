@@ -81,17 +81,17 @@ export default function AdminEliorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0F1E] p-6">
+    <div className="min-h-screen bg-[#0A0F1E] p-4 sm:p-6">
       <div className="mx-auto max-w-6xl">
-        <h1 className="font-syne text-2xl font-semibold text-white flex items-center gap-2">
-          <MessageCircle className="h-7 w-7 text-gold" />
+        <h1 className="font-syne text-xl font-semibold text-white flex items-center gap-2 sm:text-2xl">
+          <MessageCircle className="h-6 w-6 sm:h-7 sm:w-7 text-gold" />
           Conversations Elior
         </h1>
-        <p className="mt-1 text-white/70">
+        <p className="mt-1 text-sm text-white/70 sm:text-base">
           {list.length} conversation(s)
         </p>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <h2 className="font-syne font-medium text-white">Liste</h2>
             <ul className="mt-4 space-y-2">

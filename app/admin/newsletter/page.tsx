@@ -23,18 +23,18 @@ export default function AdminNewsletterPage() {
   }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="font-syne text-2xl font-semibold text-white flex items-center gap-2">
+    <div className="p-4 sm:p-6">
+      <h1 className="font-syne text-xl font-semibold text-white flex items-center gap-2 sm:text-2xl">
         <Newspaper className="h-7 w-7 text-gold" />
         Newsletter — Abonnés
       </h1>
 
       {loading ? (
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 sm:mt-8 flex justify-center">
           <Loader2 className="h-8 w-8 animate-spin text-gold" />
         </div>
       ) : (
-        <div className="mt-8">
+        <div className="mt-6 sm:mt-8">
           <AdminTable<Abonne>
             columns={[
               { key: "email", label: "Email" },

@@ -38,13 +38,13 @@ export default function PortfolioPreview() {
   return (
     <section
       id="portfolio-preview"
-      className="scroll-mt-20 bg-blue-xl/20 px-4 py-16 md:py-24"
+      className="scroll-mt-20 bg-blue-xl/20 px-4 py-12 sm:py-16 md:py-24"
       aria-labelledby="portfolio-preview-title"
     >
       <div className="mx-auto max-w-6xl">
         <motion.h2
           id="portfolio-preview-title"
-          className="font-syne text-2xl font-semibold text-navy md:text-4xl"
+          className="font-syne text-xl font-semibold text-navy sm:text-2xl md:text-4xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -53,7 +53,7 @@ export default function PortfolioPreview() {
           Nos réalisations
         </motion.h2>
         <motion.p
-          className="mt-3 max-w-2xl text-gray"
+          className="mt-2 sm:mt-3 max-w-2xl text-sm sm:text-base text-gray"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -62,7 +62,7 @@ export default function PortfolioPreview() {
           Des projets concrets livrés pour des entreprises et institutions au Bénin et en Afrique de l&apos;Ouest.
         </motion.p>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {PROJECTS.map((project, i) => (
             <motion.div
               key={project.slug}
@@ -101,7 +101,7 @@ export default function PortfolioPreview() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Button asChild variant="primary" className="shadow-gold-cta">
+          <Button asChild variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto">
             <Link href="/portfolio">Voir tout le portfolio</Link>
           </Button>
         </motion.div>

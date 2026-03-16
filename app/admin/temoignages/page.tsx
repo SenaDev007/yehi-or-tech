@@ -31,13 +31,13 @@ export default function AdminTemoignagesPage() {
   }, []);
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between">
-        <h1 className="font-syne text-2xl font-semibold text-white flex items-center gap-2">
-          <MessageSquare className="h-7 w-7 text-gold" />
+    <div className="p-4 sm:p-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="font-syne text-xl font-semibold text-white flex items-center gap-2 sm:text-2xl">
+          <MessageSquare className="h-6 w-6 sm:h-7 sm:w-7 text-gold" />
           Témoignages
         </h1>
-        <Button asChild variant="primary" className="shadow-gold-cta">
+        <Button asChild variant="primary" className="shadow-gold-cta min-h-[44px] w-full sm:w-auto">
           <Link href="/admin/temoignages/new">Nouveau témoignage</Link>
         </Button>
       </div>
@@ -47,7 +47,7 @@ export default function AdminTemoignagesPage() {
           <Loader2 className="h-8 w-8 animate-spin text-gold" />
         </div>
       ) : (
-        <div className="mt-8">
+        <div className="mt-6 sm:mt-8">
           <AdminTable<Temoignage>
             columns={[
               { key: "ordre", label: "Ordre" },

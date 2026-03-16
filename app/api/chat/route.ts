@@ -18,9 +18,9 @@ const bodySchema = z.object({
 
 export async function POST(request: Request) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
+  if (!apiKey || apiKey.trim() === "" || apiKey === "sk-ant-...") {
     return NextResponse.json(
-      { error: "Service non configuré" },
+      { error: "Service non configuré (ANTHROPIC_API_KEY manquant ou invalide)" },
       { status: 503 }
     );
   }

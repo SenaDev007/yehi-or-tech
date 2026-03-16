@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticleBySlug, getArticleSlugs, BLOG_CAT_LABELS } from "@/lib/blog";
@@ -33,32 +34,35 @@ export default async function BlogSlugPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-white pt-[70px]">
-      <article className="mx-auto max-w-3xl px-4 py-12">
-        <nav className="mb-6 text-sm text-gray" aria-label="Fil d'Ariane">
+      <article className="mx-auto max-w-3xl px-4 py-8 sm:py-12">
+        <nav className="mb-4 sm:mb-6 text-xs sm:text-sm text-gray" aria-label="Fil d'Ariane">
           <Link href="/blog" className="text-blue hover:underline">Blog</Link>
           <span className="mx-2">/</span>
-          <span>{article.titre}</span>
+          <span className="line-clamp-1">{article.titre}</span>
         </nav>
 
         <Badge variant="navy">{BLOG_CAT_LABELS[article.categorie]}</Badge>
-        <h1 className="mt-3 font-syne text-3xl font-bold text-navy md:text-4xl">
+        <h1 className="mt-3 font-syne text-2xl font-bold text-navy sm:text-3xl md:text-4xl">
           {article.titre}
         </h1>
-        <p className="mt-2 text-gray">
+        <p className="mt-2 text-sm sm:text-base text-gray">
           {article.publishedAt && formatDate(article.publishedAt)} · {article.auteur}
         </p>
 
         {article.couverture && (
-          <div className="mt-6 aspect-video overflow-hidden rounded-xl">
-            <img
+          <div className="relative mt-6 aspect-video overflow-hidden rounded-xl">
+            <Image
               src={article.couverture}
-              alt=""
-              className="h-full w-full object-cover"
+              alt={article.titre}
+              fill
+              quality={85}
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 896px"
             />
           </div>
         )}
 
-        <p className="mt-6 text-lg text-gray">{article.extrait}</p>
+        <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray">{article.extrait}</p>
 
         <div
           className="mt-8 max-w-none text-gray [&_a]:text-blue [&_a]:underline [&_h2]:mt-6 [&_h2]:font-syne [&_h2]:text-xl [&_p]:mt-2"
@@ -78,14 +82,14 @@ export default async function BlogSlugPage({ params }: Props) {
           </div>
         )}
 
-        <div className="mt-12 border-t border-blue-lt pt-8">
+        <div className="mt-8 sm:mt-12 border-t border-blue-lt pt-6 sm:pt-8">
           <NewsletterInline />
         </div>
 
-        <div className="mt-8">
+        <div className="mt-6 sm:mt-8">
           <Link
             href="/blog"
-            className="font-syne font-medium text-gold hover:underline"
+            className="inline-flex items-center min-h-[44px] font-syne font-medium text-gold hover:underline"
           >
             ← Retour au blog
           </Link>
