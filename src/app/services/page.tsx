@@ -19,6 +19,7 @@ const ServicesPage = () => {
       <section className="pt-64 pb-32 relative overflow-hidden">
         {/* Background Halos */}
         <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute inset-0 bg-[url('/images/heroes/services.png')] bg-cover bg-center opacity-10 mix-blend-overlay" />
           <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] glow-radial animate-pulse-slow" />
           <div className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[50%] glow-blue animate-pulse-slow" />
         </div>
@@ -58,11 +59,23 @@ const ServicesPage = () => {
                 >
                   {/* Visual/Card */}
                   <div className="lg:w-1/2 w-full">
-                    <div className="relative aspect-video glass rounded-[3rem] p-16 flex items-center justify-center overflow-hidden group">
-                      <div className="absolute inset-0 glow-radial opacity-10 group-hover:opacity-20 transition-opacity duration-700 scale-150" />
-                      <IconComponent className="w-48 h-48 text-white opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:scale-110" />
+                    <div className="relative aspect-video glass rounded-[3rem] overflow-hidden group">
+                      {service.image ? (
+                        <div 
+                          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
+                          style={{ backgroundImage: `url(${service.image})` }}
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <IconComponent className="w-48 h-48 text-white opacity-5" />
+                        </div>
+                      )}
                       
-                      <div className="absolute bottom-12 left-12 right-12">
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-noir-profond/40 group-hover:bg-noir-profond/20 transition-colors duration-700" />
+                      <div className="absolute inset-0 glow-radial opacity-10 group-hover:opacity-20 transition-opacity duration-700 scale-150" />
+                      
+                      <div className="absolute bottom-12 left-12 right-12 z-10">
                         <div className="flex flex-wrap gap-3">
                           {service.tags.map(tag => (
                             <span key={tag} className="px-4 py-1.5 glass rounded-full text-[9px] font-mono text-white/60 uppercase tracking-[0.3em]">

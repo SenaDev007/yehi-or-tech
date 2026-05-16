@@ -8,6 +8,7 @@ export type Service = {
   benefits: string[];
   tags: string[];
   gradient: string;
+  image?: string;
 };
 
 export const services: Service[] = [
@@ -20,7 +21,8 @@ export const services: Service[] = [
     deliverables: ["Flyers professionnels", "Affiches publicitaires", "Cartes de visite", "Cartes d'invitation", "Visuels réseaux sociaux", "Identité visuelle"],
     benefits: ["Image professionnelle immédiate", "Communication claire", "Supports prêts à diffuser", "Mémorisation accrue"],
     tags: ["Flyers", "Cartes de visite", "Social Media", "Identité visuelle"],
-    gradient: "linear-gradient(135deg, #2C1A2C 0%, #0D1117 100%)"
+    gradient: "linear-gradient(135deg, #2C1A2C 0%, #0D1117 100%)",
+    image: "/images/services/web-creation.png" // Placeholder for now
   },
   {
     slug: "creation-sites-web",
@@ -31,7 +33,8 @@ export const services: Service[] = [
     deliverables: ["Sites vitrines", "Landing pages", "E-commerce", "Sites institutionnels", "Blogs", "Maintenance"],
     benefits: ["Présence mondiale", "Crédibilité renforcée", "Acquisition de clients", "Autonomie de gestion"],
     tags: ["Responsive", "SEO", "Next.js", "Performance"],
-    gradient: "linear-gradient(135deg, #0D1117 0%, #071A2F 100%)"
+    gradient: "linear-gradient(135deg, #0D1117 0%, #071A2F 100%)",
+    image: "/images/services/web-creation.png"
   },
   {
     slug: "applications-web-mobile",
@@ -42,7 +45,8 @@ export const services: Service[] = [
     deliverables: ["Plateformes SaaS", "Dashboards", "Applications mobiles", "APIs robustes", "Gestion de données", "Outils internes"],
     benefits: ["Efficacité opérationnelle", "Centralisation des données", "Accessibilité multi-support", "Évolutivité"],
     tags: ["SaaS", "Dashboard", "React", "Node.js"],
-    gradient: "linear-gradient(135deg, #1A2744 0%, #080A0F 100%)"
+    gradient: "linear-gradient(135deg, #1A2744 0%, #080A0F 100%)",
+    image: "/images/services/web-creation.png" // Placeholder
   },
   {
     slug: "agents-ia",
@@ -53,18 +57,20 @@ export const services: Service[] = [
     deliverables: ["WhatsApp Bot IA", "Assistant web intelligent", "Qualification prospects", "Automatisation support", "Intégration LLM", "Agents multilingues"],
     benefits: ["Disponibilité 24h/24", "Réduction des coûts", "Réponse instantanée", "Productivité accrue"],
     tags: ["IA", "WhatsApp", "Automation", "Support"],
-    gradient: "linear-gradient(135deg, #071A2F 0%, #141921 100%)"
+    gradient: "linear-gradient(135deg, #071A2F 0%, #141921 100%)",
+    image: "/images/services/ai-agents.png"
   },
   {
     slug: "automatisation-metier",
     title: "Automatisation Métier",
     icon: "Zap",
     shortDescription: "Éliminez les tâches répétitives de votre quotidien.",
-    fullDescription: "Ne perdez plus de temps sur des tâches manuelles. Nous créons des workflows intelligents qui connectent vos outils et automatisent vos processus de vente, de marketing et de gestion.",
+    fullDescription: "Ne perdez plus de temps sur des tâches manuelles. Nous créons des workflows intelligentes qui connectent vos outils et automatisent vos processus de vente, de marketing et de gestion.",
     deliverables: ["Workflows n8n/Zapier", "Relances automatiques", "Notifications intelligentes", "Synchronisation CRM", "Reporting auto", "Audit process"],
     benefits: ["Gain de temps massif", "Zéro erreur humaine", "Focus sur l'essentiel", "Processus fluides"],
     tags: ["n8n", "Zapier", "Efficiency", "Process"],
-    gradient: "linear-gradient(135deg, #2C1A2C 0%, #080A0F 100%)"
+    gradient: "linear-gradient(135deg, #2C1A2C 0%, #080A0F 100%)",
+    image: "/images/services/ai-agents.png" // Placeholder
   },
   {
     slug: "marketing-digital",
@@ -75,7 +81,8 @@ export const services: Service[] = [
     deliverables: ["Facebook Ads", "Google Ads", "Community Management", "Stratégie de contenu", "Email Marketing", "Copywriting"],
     benefits: ["Visibilité ciblée", "Augmentation des ventes", "Engagement communauté", "Notoriété"],
     tags: ["Ads", "Social Media", "Growth", "Content"],
-    gradient: "linear-gradient(135deg, #1A2744 0%, #0D1117 100%)"
+    gradient: "linear-gradient(135deg, #1A2744 0%, #0D1117 100%)",
+    image: "/images/services/web-creation.png" // Placeholder
   },
   {
     slug: "credibilite-en-ligne",
@@ -86,7 +93,8 @@ export const services: Service[] = [
     deliverables: ["Emails pro @domaine", "Fiche Google Maps", "SEO Local", "Annuaires pro", "Config DNS anti-spam", "Indexation Google"],
     benefits: ["Confiance immédiate", "Référencement local", "Image institutionnelle", "Sécurité emails"],
     tags: ["Emails Pro", "Google Maps", "Trust", "Local SEO"],
-    gradient: "linear-gradient(135deg, #080A0F 0%, #1A2744 100%)"
+    gradient: "linear-gradient(135deg, #080A0F 0%, #1A2744 100%)",
+    image: "/images/services/web-creation.png" // Placeholder
   },
   {
     slug: "conseil-accompagnement",
@@ -97,6 +105,7 @@ export const services: Service[] = [
     deliverables: ["Audit digital", "Stratégie numérique", "Accompagnement projet", "Formation outils", "Conseil technique", "Veille IA"],
     benefits: ["Choix technos sûrs", "Vision claire", "Accélération projets", "Compétences internes"],
     tags: ["Consulting", "Strategy", "Training", "Audit"],
-    gradient: "linear-gradient(135deg, #0D1117 0%, #2C1A2C 100%)"
+    gradient: "linear-gradient(135deg, #0D1117 0%, #2C1A2C 100%)",
+    image: "/images/services/ai-agents.png" // Placeholder
   }
 ];

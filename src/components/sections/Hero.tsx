@@ -49,6 +49,7 @@ const Hero = () => {
     >
       {/* Dynamic Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute inset-0 bg-[url('/images/heroes/home.png')] bg-cover bg-center opacity-20 mix-blend-overlay" />
         <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] glow-radial animate-pulse-slow" />
         <div className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[50%] glow-blue animate-pulse-slow" />
       </div>
