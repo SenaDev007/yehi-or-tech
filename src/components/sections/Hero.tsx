@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import Tag from "@/components/ui/Tag";
 import { MessageCircle, ArrowRight, Bot, Globe, Zap } from "lucide-react";
+import Link from "next/link";
 import gsap from "@/lib/gsap";
 import { motion } from "framer-motion";
 

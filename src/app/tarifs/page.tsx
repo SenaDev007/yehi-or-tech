@@ -4,6 +4,7 @@ import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Tag from "@/components/ui/Tag";
 import CTASection from "@/components/sections/CTASection";
 import PricingCard from "@/components/ui/PricingCard";
 import { ChevronDown, HelpCircle } from "lucide-react";
