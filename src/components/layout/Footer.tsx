@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 
 const Footer = () => {
