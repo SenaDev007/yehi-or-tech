@@ -63,17 +63,15 @@ const Hero = () => {
               ref={titleRef}
               className="text-white leading-[1.1] mb-8"
             >
-              Donnez de la <span className="text-gradient-or">lumière</span><br />
-              à votre présence digitale.
+              Des idées <span className="text-gradient-or">lumineuses</span>,<br />
+              des solutions encore plus brillantes.
             </h1>
             
             <p 
               ref={subtitleRef}
               className="text-lg md:text-xl text-gris-light mb-10 max-w-2xl leading-relaxed"
             >
-              Sites web, applications, agents IA, automatisation, marketing digital 
-              et crédibilité en ligne — YEHI OR Tech conçoit des solutions 
-              numériques concrètes pour les entreprises qui veulent avancer.
+              YEHI OR Tech conçoit des sites web, applications, identités visuelles, agents IA et automatisations pour aider les entreprises, écoles, commerces et organisations à gagner en visibilité, en efficacité et en crédibilité.
             </p>
             
             <div 
@@ -103,7 +101,7 @@ const Hero = () => {
           >
             {/* Abstract Ring */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-or/20 rounded-full animate-[spin_20s_linear_infinite]">
-              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-or rounded-full shadow-[0_0_15px_rgba(201,168,76,0.8)]" />
+              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-or rounded-full shadow-[0_0_15px_rgba(245,183,0,0.8)]" />
             </div>
 
             {/* Floating Cards */}
@@ -119,19 +117,19 @@ const Hero = () => {
 
               {/* Card 2: Site Web */}
               <div className="floating-card absolute top-1/2 left-0 -translate-y-1/2 glass p-5 rounded-2xl w-44 shadow-2xl z-20">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center mb-3">
-                  <Globe className="text-blue-400 w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-bleu-electrique/20 flex items-center justify-center mb-3">
+                  <Globe className="text-bleu-electrique w-6 h-6" />
                 </div>
-                <div className="text-[10px] font-mono text-blue-400 uppercase tracking-widest mb-1">Site Web</div>
+                <div className="text-[10px] font-mono text-bleu-electrique uppercase tracking-widest mb-1">Site Web</div>
                 <div className="text-sm font-bold text-white leading-tight">Expérience premium & rapide</div>
               </div>
 
               {/* Card 3: Automation */}
               <div className="floating-card absolute bottom-0 right-0 glass p-5 rounded-2xl w-44 shadow-2xl">
-                <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center mb-3">
-                  <Zap className="text-purple-400 w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-or-light/20 flex items-center justify-center mb-3">
+                  <Zap className="text-or-light w-6 h-6" />
                 </div>
-                <div className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-1">Workflow</div>
+                <div className="text-[10px] font-mono text-or-light uppercase tracking-widest mb-1">Workflow</div>
                 <div className="text-sm font-bold text-white leading-tight">Automatisation intelligente</div>
               </div>
             </div>

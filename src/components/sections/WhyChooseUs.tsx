@@ -31,8 +31,8 @@ const reasons = [
 
 const metrics = [
   { icon: Zap, value: "48h", label: "Délai de réponse garanti", color: "text-or" },
-  { icon: Globe, value: "5+", label: "Pays couverts par nos solutions", color: "text-blue-400" },
-  { icon: MessageSquare, value: "100%", label: "Projets avec IA intégrée", color: "text-green-400" },
+  { icon: Globe, value: "5+", label: "Pays couverts par nos solutions", color: "text-bleu-electrique" },
+  { icon: MessageSquare, value: "100%", label: "Projets avec IA intégrée", color: "text-or-light" },
   { icon: Zap, value: "Mobile First", label: "Toutes nos solutions", color: "text-or" },
 ];
 

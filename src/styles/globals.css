@@ -4,23 +4,23 @@
 
 :root {
   /* Fonds */
-  --noir-profond: #080A0F;
-  --noir-2: #0D1117;
-  --noir-3: #141921;
+  --noir-profond: #0B0F19;
+  --noir-2: #071A2F;
+  --noir-3: #0B3D91;
   --bleu-nuit: #071A2F;
   --bleu-tech: #0B3D91;
-  --bleu-medium: #1A2744;
+  --bleu-electrique: #1464F4;
 
   /* Accent principal — L'or de la lumière */
-  --or: #C9A84C;
-  --or-light: #E8C96A;
+  --or: #F5B700;
+  --or-light: #FFD166;
   --or-pale: #F5E6B8;
   --or-vivid: #F5B700;
 
   /* Textes */
-  --blanc: #F8F5EE;
-  --gris-light: #C5C8D0;
-  --gris: #8A8F9E;
+  --blanc: #FFFFFF;
+  --gris-light: #F5F7FA;
+  --gris: #A1A1AA;
   --gris-dark: #4B5563;
 
   /* Statuts */
@@ -39,7 +39,7 @@
   --color-noir-3: var(--noir-3);
   --color-bleu-nuit: var(--bleu-nuit);
   --color-bleu-tech: var(--bleu-tech);
-  --color-bleu-medium: var(--bleu-medium);
+  --color-bleu-electrique: var(--bleu-electrique);
   
   --color-or: var(--or);
   --color-or-light: var(--or-light);
@@ -92,7 +92,7 @@
   }
 
   .grid-pattern {
-    background-image: radial-gradient(circle at 2px 2px, rgba(201, 168, 76, 0.05) 1px, transparent 0);
+    background-image: radial-gradient(circle at 2px 2px, rgba(245, 183, 0, 0.05) 1px, transparent 0);
     background-size: 40px 40px;
   }
 }

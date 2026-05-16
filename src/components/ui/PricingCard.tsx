@@ -29,7 +29,7 @@ const PricingCard = ({
   return (
     <div className={cn(
       "group relative flex flex-col bg-noir-2 border border-white/5 p-8 md:p-10 transition-all duration-500 hover:-translate-y-2 hover:border-or/40 overflow-hidden",
-      recommended && "border-or/20 bg-noir-3 shadow-[0_0_40px_rgba(201,168,76,0.05)]",
+      recommended && "border-or/20 bg-noir-3 shadow-[0_0_40px_rgba(245,183,0,0.05)]",
       className
     )}>
       {recommended && (

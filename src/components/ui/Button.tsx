@@ -7,7 +7,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-or text-noir-profond hover:bg-or-light shadow-[0_0_20px_rgba(201,168,76,0.3)] clip-angular",
+        primary: "bg-or text-noir-profond hover:bg-or-light shadow-[0_0_20px_rgba(245,183,0,0.3)] clip-angular",
         outline: "border border-blanc/20 text-blanc hover:bg-white/5 hover:border-blanc/40 clip-angular",
         ghost: "text-blanc hover:bg-white/5",
         whatsapp: "bg-[#25D366] text-white hover:bg-[#128C7E] clip-angular",

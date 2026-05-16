@@ -117,7 +117,7 @@ const ProcessSteps = () => {
 
                 {/* Number Indicator */}
                 <div className="relative z-10 flex-shrink-0">
-                  <div className="w-14 h-14 rounded-full bg-noir-profond border-2 border-or flex items-center justify-center text-or font-display font-bold text-xl shadow-[0_0_20px_rgba(201,168,76,0.3)] group hover:bg-or hover:text-noir-profond transition-colors duration-500">
+                  <div className="w-14 h-14 rounded-full bg-noir-profond border-2 border-or flex items-center justify-center text-or font-display font-bold text-xl shadow-[0_0_20px_rgba(245,183,0,0.3)] group hover:bg-or hover:text-noir-profond transition-colors duration-500">
                     {step.num}
                   </div>
                 </div>

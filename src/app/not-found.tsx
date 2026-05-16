@@ -22,7 +22,7 @@ export default function NotFound() {
             </p>
             <Link
               href="/"
-              className="inline-flex items-center px-8 py-4 bg-or text-noir-profond font-bold clip-angular hover:bg-or-light transition-colors shadow-[0_0_20px_rgba(201,168,76,0.3)]"
+              className="inline-flex items-center px-8 py-4 bg-or text-noir-profond font-bold clip-angular hover:bg-or-light transition-colors shadow-[0_0_20px_rgba(245,183,0,0.3)]"
             >
               <MoveLeft className="mr-2 w-5 h-5" />
               Retour à l'accueil
