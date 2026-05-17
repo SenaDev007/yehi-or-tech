@@ -29,7 +29,7 @@ const PortfolioCard = ({
       className
     )}>
       {/* Real-time Preview (Bypassing X-Frame-Options via Screenshot API) */}
-      <div className="absolute inset-0 z-0 opacity-60 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105 pointer-events-none overflow-hidden bg-noir-2">
+      <div className="absolute inset-0 z-0 opacity-100 transition-all duration-1000 group-hover:scale-105 pointer-events-none overflow-hidden bg-noir-2">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <Loader2 className="w-8 h-8 text-or animate-spin opacity-20" />
@@ -50,8 +50,8 @@ const PortfolioCard = ({
         </div>
       </div>
 
-      {/* Background Decor Overlay */}
-      <div className="absolute inset-0 bg-noir-profond/40 group-hover:bg-noir-profond/10 transition-colors duration-700 z-10" />
+      {/* Background Decor Overlay (Removed dark overlays) */}
+      <div className="absolute inset-0 bg-transparent transition-colors duration-700 z-10" />
 
       {/* Emoji Decor (Backup) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8rem] opacity-[0.03] grayscale transition-all duration-1000 group-hover:opacity-0 group-hover:scale-110 z-0">
@@ -83,8 +83,8 @@ const PortfolioCard = ({
         </a>
       </div>
 
-      {/* Subtle Bottom Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-noir-profond/90 via-noir-profond/30 to-transparent opacity-100 group-hover:opacity-80 transition-opacity duration-700 z-15 pointer-events-none" />
+      {/* Subtle Bottom Gradient (Only for text readability) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-noir-profond/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700 z-15 pointer-events-none" />
     </div>
   );
 };
