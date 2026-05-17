@@ -72,7 +72,7 @@ const WhyChooseUs = () => {
       {/* Side Label */}
       <div className="absolute top-48 left-12 hidden xl:block">
         <div className="flex items-center gap-4 text-[10px] font-mono text-gris-dark uppercase tracking-[0.4em] vertical-text h-32">
-          <span>Our philosophy</span>
+          <span>Notre philosophie</span>
           <div className="w-px h-full bg-gris-dark/20" />
         </div>
       </div>
@@ -83,7 +83,7 @@ const WhyChooseUs = () => {
           
           {/* Left Column: Arguments */}
           <div className="lg:w-1/2">
-            <Tag>Philosophy</Tag>
+            <Tag>Philosophie</Tag>
             <h2 className="text-white mt-8 mb-16 uppercase leading-[0.9]">
               L'excellence <br />
               <span className="text-gradient-or italic">comme</span> standard.

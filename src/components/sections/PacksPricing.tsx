@@ -43,7 +43,7 @@ const PacksPricing = () => {
       {/* Side Label */}
       <div className="absolute top-48 right-12 hidden xl:block">
         <div className="flex items-center gap-4 text-[10px] font-mono text-gris-dark uppercase tracking-[0.4em] vertical-text h-32">
-          <span>Investment</span>
+          <span>Investissement</span>
           <div className="w-px h-full bg-gris-dark/20" />
         </div>
       </div>

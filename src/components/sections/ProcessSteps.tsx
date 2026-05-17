@@ -80,7 +80,7 @@ const ProcessSteps = () => {
       {/* Side Label */}
       <div className="absolute top-48 left-12 hidden xl:block">
         <div className="flex items-center gap-4 text-[10px] font-mono text-gris-dark uppercase tracking-[0.4em] vertical-text h-32">
-          <span>Workflow</span>
+          <span>Processus</span>
           <div className="w-px h-full bg-gris-dark/20" />
         </div>
       </div>
@@ -88,7 +88,7 @@ const ProcessSteps = () => {
       <div className="container mx-auto px-6">
         
         <div className="max-w-4xl mb-20">
-          <Tag>Process</Tag>
+          <Tag>Processus</Tag>
           <h2 className="text-white mt-8 mb-8 uppercase leading-[0.9]">
             Une méthode <br />
             <span className="text-gradient-or italic">éprouvée</span> pour réussir.

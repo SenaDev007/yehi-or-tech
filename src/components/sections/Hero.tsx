@@ -59,12 +59,12 @@ const Hero = () => {
         <div className="max-w-[1200px] mx-auto">
           
           <div className="hero-tag mb-8">
-            <Tag>Digital Production Studio</Tag>
+            <Tag>Studio de Production Digitale</Tag>
           </div>
           
           <h1 
             ref={titleRef}
-            className="text-white mb-8 uppercase tracking-tighter"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 uppercase tracking-tighter leading-[0.9]"
           >
             Des idées <br />
             <span className="text-gradient-or italic font-display">lumineuses</span>,<br />
@@ -86,9 +86,11 @@ const Hero = () => {
               ref={ctaRef}
               className="flex flex-col sm:flex-row items-center gap-6"
             >
-              <Button size="lg" className="w-full sm:w-auto">
-                Lancer un projet
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Lancer un projet
+                </Button>
+              </Link>
               
               <Link 
                 href="/portfolio" 
@@ -116,7 +118,7 @@ const Hero = () => {
       {/* Bottom Label */}
       <div className="absolute bottom-12 left-6 hidden md:block">
         <div className="flex items-center gap-4 text-[10px] font-mono text-gris-dark uppercase tracking-[0.4em] vertical-text h-32">
-          <span>Scroll to explore</span>
+          <span>Défiler pour explorer</span>
           <div className="w-px h-full bg-gris-dark/20" />
         </div>
       </div>

@@ -67,9 +67,11 @@ const Navbar = () => {
 
         {/* Desktop CTA */}
         <div className="hidden lg:block">
-          <Button size="sm" className="px-6 h-9 text-[9px] uppercase tracking-[0.3em] font-mono">
-            Projet
-          </Button>
+          <Link href="/contact">
+            <Button size="sm" className="px-6 h-9 text-[9px] uppercase tracking-[0.3em] font-mono">
+              Projet
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}

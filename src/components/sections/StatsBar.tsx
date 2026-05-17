@@ -57,7 +57,7 @@ const StatsBar = () => {
       {/* Side Label */}
       <div className="absolute top-1/2 left-12 -translate-y-1/2 hidden xl:block">
         <div className="flex items-center gap-4 text-[10px] font-mono text-gris-dark uppercase tracking-[0.4em] vertical-text h-24">
-          <span>Trust us</span>
+          <span>Faites-nous confiance</span>
           <div className="w-px h-full bg-gris-dark/20" />
         </div>
       </div>
