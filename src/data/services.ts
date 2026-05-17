@@ -22,7 +22,7 @@ export const services: Service[] = [
     benefits: ["Image professionnelle immédiate", "Communication claire", "Supports prêts à diffuser", "Mémorisation accrue"],
     tags: ["Flyers", "Cartes de visite", "Social Media", "Identité visuelle"],
     gradient: "linear-gradient(135deg, #2C1A2C 0%, #0D1117 100%)",
-    image: "/images/services/web-creation.png" // Placeholder for now
+    image: "/images/services/graphic-design.png"
   },
   {
     slug: "creation-sites-web",
@@ -46,7 +46,7 @@ export const services: Service[] = [
     benefits: ["Efficacité opérationnelle", "Centralisation des données", "Accessibilité multi-support", "Évolutivité"],
     tags: ["SaaS", "Dashboard", "React", "Node.js"],
     gradient: "linear-gradient(135deg, #1A2744 0%, #080A0F 100%)",
-    image: "/images/services/web-creation.png" // Placeholder
+    image: "/images/services/app-mobile.png"
   },
   {
     slug: "agents-ia",
@@ -70,7 +70,7 @@ export const services: Service[] = [
     benefits: ["Gain de temps massif", "Zéro erreur humaine", "Focus sur l'essentiel", "Processus fluides"],
     tags: ["n8n", "Zapier", "Efficiency", "Process"],
     gradient: "linear-gradient(135deg, #2C1A2C 0%, #080A0F 100%)",
-    image: "/images/services/ai-agents.png" // Placeholder
+    image: "/images/services/automation.png"
   },
   {
     slug: "marketing-digital",
@@ -82,7 +82,7 @@ export const services: Service[] = [
     benefits: ["Visibilité ciblée", "Augmentation des ventes", "Engagement communauté", "Notoriété"],
     tags: ["Ads", "Social Media", "Growth", "Content"],
     gradient: "linear-gradient(135deg, #1A2744 0%, #0D1117 100%)",
-    image: "/images/services/web-creation.png" // Placeholder
+    image: "/images/services/marketing.png"
   },
   {
     slug: "credibilite-en-ligne",
@@ -94,7 +94,7 @@ export const services: Service[] = [
     benefits: ["Confiance immédiate", "Référencement local", "Image institutionnelle", "Sécurité emails"],
     tags: ["Emails Pro", "Google Maps", "Trust", "Local SEO"],
     gradient: "linear-gradient(135deg, #080A0F 0%, #1A2744 100%)",
-    image: "/images/services/web-creation.png" // Placeholder
+    image: "/images/services/credibility.png"
   },
   {
     slug: "conseil-accompagnement",
@@ -106,6 +106,6 @@ export const services: Service[] = [
     benefits: ["Choix technos sûrs", "Vision claire", "Accélération projets", "Compétences internes"],
     tags: ["Consulting", "Strategy", "Training", "Audit"],
     gradient: "linear-gradient(135deg, #0D1117 0%, #2C1A2C 100%)",
-    image: "/images/services/ai-agents.png" // Placeholder
+    image: "/images/services/consulting.png"
   }
 ];
