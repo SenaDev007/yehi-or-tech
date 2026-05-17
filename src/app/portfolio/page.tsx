@@ -90,11 +90,11 @@ const PortfolioPage = () => {
                   link={project.link}
                 />
                 
-                <div className="mt-10 px-4">
-                  <p className="text-xl text-gris leading-relaxed mb-6 line-clamp-2 opacity-80">{project.description}</p>
-                  <div className="flex flex-wrap gap-4">
+                <div className="mt-8 px-2">
+                  <p className="text-base text-gris leading-relaxed mb-5 line-clamp-2">{project.description}</p>
+                  <div className="flex flex-wrap gap-3">
                     {project.tech.map(t => (
-                      <span key={t} className="text-[10px] font-mono text-or uppercase tracking-[0.3em]">
+                      <span key={t} className="px-3 py-1 text-[9px] font-mono text-or/80 uppercase tracking-[0.25em] border border-or/20 rounded-full bg-or/5">
                         {t}
                       </span>
                     ))}
