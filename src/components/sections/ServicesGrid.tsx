@@ -16,56 +16,64 @@ const services = [
     title: "Conception Graphique",
     icon: Palette,
     description: "Flyers, affiches, cartes de visite, identité visuelle et supports de communication professionnels. Une image propre dès le premier regard.",
-    tags: ["Flyers", "Cartes de visite", "Social Media", "Identité visuelle"]
+    tags: ["Flyers", "Cartes de visite", "Social Media", "Identité visuelle"],
+    image: "/images/services/graphic-design.png"
   },
   {
     number: "02",
     title: "Création de Sites Web",
     icon: Globe,
     description: "Sites vitrines, sites d'entreprise, landing pages, sites pour écoles et commerces. Modernes, rapides, compatibles mobile et conçus pour convertir.",
-    tags: ["Site vitrine", "Landing page", "E-commerce", "Responsive"]
+    tags: ["Site vitrine", "Landing page", "E-commerce", "Responsive"],
+    image: "/images/services/web-creation.png"
   },
   {
     number: "03",
     title: "Applications Web & Mobile",
     icon: Monitor,
     description: "Plateformes SaaS, applications de gestion, tableaux de bord administratifs, outils métiers sur mesure. Des systèmes structurés pour vos besoins.",
-    tags: ["SaaS", "Dashboard", "API REST", "Mobile"]
+    tags: ["SaaS", "Dashboard", "API REST", "Mobile"],
+    image: "/images/services/app-mobile.png"
   },
   {
     number: "04",
     title: "Agents IA",
     icon: Bot,
     description: "Agents WhatsApp, Facebook, web. Support client automatisé, qualification de prospects, prise de rendez-vous. L'IA au service de votre productivité.",
-    tags: ["WhatsApp Bot", "Support client", "Claude API", "Facebook"]
+    tags: ["WhatsApp Bot", "Support client", "Claude API", "Facebook"],
+    image: "/images/services/ai-agents.png"
   },
   {
     number: "05",
     title: "Automatisation Métier",
     icon: Zap,
     description: "Workflows intelligents, relances automatiques, notifications, gestion des prospects. Si une tâche est répétitive, elle peut être automatisée.",
-    tags: ["n8n", "Workflows", "Intégrations", "APIs"]
+    tags: ["n8n", "Workflows", "Intégrations", "APIs"],
+    image: "/images/services/automation.png"
   },
   {
     number: "06",
     title: "Marketing Digital",
     icon: TrendingUp,
     description: "Gestion des réseaux sociaux, création de contenu, publicité ciblée (Facebook Ads, Google Ads), stratégie de croissance et community management.",
-    tags: ["Facebook Ads", "Google Ads", "Community", "Contenu"]
+    tags: ["Facebook Ads", "Google Ads", "Community", "Contenu"],
+    image: "/images/services/marketing.png"
   },
   {
     number: "07",
     title: "Crédibilité en Ligne",
     icon: ShieldCheck,
     description: "Emails pro, fiche Google Maps, indexation Google Search Console, inscription dans les annuaires. Votre entreprise prend son rang sur internet.",
-    tags: ["Emails pro", "Google Maps", "SEO local", "Annuaires"]
+    tags: ["Emails pro", "Google Maps", "SEO local", "Annuaires"],
+    image: "/images/services/credibility.png"
   },
   {
     number: "08",
     title: "Conseil & Stratégie",
     icon: Compass,
     description: "Audit de votre présence numérique, stratégie digitale, choix des outils, structuration des processus. Nous vous guidons avec méthode.",
-    tags: ["Audit digital", "Stratégie", "Formation", "Suivi"]
+    tags: ["Audit digital", "Stratégie", "Formation", "Suivi"],
+    image: "/images/services/consulting.png"
   }
 ];
 

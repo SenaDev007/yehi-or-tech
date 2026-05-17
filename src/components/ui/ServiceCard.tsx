@@ -11,6 +11,7 @@ interface ServiceCardProps {
   description: string;
   icon: LucideIcon;
   tags: string[];
+  image?: string;
   className?: string;
 }
 
@@ -20,6 +21,7 @@ const ServiceCard = ({
   description, 
   icon: Icon, 
   tags,
+  image,
   className 
 }: ServiceCardProps) => {
   return (
@@ -27,11 +29,20 @@ const ServiceCard = ({
       "group relative glass p-6 md:p-8 transition-all duration-700 hover:bg-white/[0.06] rounded-3xl overflow-hidden flex flex-col h-full",
       className
     )}>
-      {/* Background Decor */}
-      <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-or/5 pill blur-3xl transition-all duration-700 group-hover:bg-or/10 group-hover:scale-110" />
+      {/* Background Decor & Image */}
+      <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl">
+        {image && (
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110 mix-blend-luminosity"
+            style={{ backgroundImage: `url(${image})` }}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-noir-profond/80 to-noir-profond opacity-100" />
+      </div>
+      <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-or/5 pill blur-3xl transition-all duration-700 group-hover:bg-or/10 group-hover:scale-110 z-0" />
       
       {/* Card Header */}
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex items-start justify-between mb-6 relative z-10">
         <div className="w-10 h-10 glass pill flex items-center justify-center transition-all duration-700 group-hover:scale-110 group-hover:bg-or group-hover:text-noir-profond">
           <Icon className="w-5 h-5 transition-colors duration-500" />
         </div>
@@ -41,7 +52,7 @@ const ServiceCard = ({
       </div>
 
       {/* Content */}
-      <div className="mt-auto">
+      <div className="mt-auto relative z-10">
         <h3 className="text-xl text-white mb-3 tracking-tight leading-tight transition-colors duration-300">
           {title}
         </h3>
