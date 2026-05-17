@@ -29,16 +29,16 @@ const PortfolioCard = ({
       className
     )}>
       {/* Real-time Iframe Preview */}
-      <div className="absolute inset-0 z-0 opacity-40 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105 pointer-events-none">
-        <div className="w-full h-full bg-noir-2 relative">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Loader2 className="w-8 h-8 text-or animate-spin opacity-20" />
-            </div>
-          )}
+      <div className="absolute inset-0 z-0 opacity-40 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105 pointer-events-none overflow-hidden bg-noir-2">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <Loader2 className="w-8 h-8 text-or animate-spin opacity-20" />
+          </div>
+        )}
+        <div className="absolute top-0 left-0 w-[400%] h-[400%] origin-top-left scale-[0.25]">
           <iframe 
             src={link} 
-            className="w-[1280px] h-[800px] origin-top-left scale-[0.3] md:scale-[0.4] lg:scale-[0.5] border-none pointer-events-none"
+            className="w-full h-full border-none pointer-events-none bg-white"
             onLoad={() => setIsLoading(false)}
             loading="lazy"
             title={title}
